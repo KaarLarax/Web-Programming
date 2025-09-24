@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Enlace a Google</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f0f0f0;
+                font-family: Arial, sans-serif;
+            }
+            /* Seleccionar el enlace */
+            a:link {
+                font-size: 5rem;
+                text-decoration: none;
+                color: green;
+                font-weight: bold;
+            }
+            /* Si ya fue visitado */
+            a:visited {
+                color: gray;
+            }
+            /* Pasar el cursor encima */
+            a:hover {
+                color: pink;
+                text-decoration: underline;
+            }
+            /* Usuario activo sobre el */
+            a:active {
+                color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <a
+            href="https://www.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GOOGLE.COM</a
+        >
+    </body>
+</html>
