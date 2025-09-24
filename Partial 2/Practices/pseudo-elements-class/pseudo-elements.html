@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Los michis</title>
+        <style>
+            body {
+                font-family: "Segoe UI", sans-serif;
+                background-color: #fff8f0;
+                margin: 0;
+                padding: 2rem;
+                justify-content: center;
+            }
+            .michi-box {
+                position: relative;
+                max-width: 600px;
+                padding: 2rem;
+                background: #fefefe;
+                border-radius: 1rem;
+                box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+            }
+            /* Huellitas ante de box */
+            .michi-box::before {
+                content: "🐾";
+                position: absolute;
+                top: -1rem;
+                left: -1rem;
+                font-size: 3rem;
+                opacity: 0.3;
+            }
+            /* Huellitas despues de box */
+            .michi-box::after {
+                content: "🐾";
+                position: absolute;
+                top: -1rem;
+                right: -1rem;
+                font-size: 3rem;
+                opacity: 0.3;
+            }
+            /* Primera letra */
+            .michi-box p::first-letter {
+                font-size: 2rem;
+                font-weight: bold;
+                color: #d32f2f;
+            }
+            /* Pirmera linea */
+            .michi-box p::first-line {
+                font-style: italic;
+                color: #0b57d0;
+            }
+            .michi-box img {
+                width: 100%;
+                border-radius: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            ::selection {
+                background-color: #ffd6e0;
+                color: #000;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="michi-box">
+            <img src="./gatito.jpg" alt="Michi adorable" />
+            <p>
+                Los michis son creaturas mágicas que dominan el arete de dormir
+                16 horas al día, consquistar corazones con un solo maullido y
+                desaparecer misteriosamente cuando más los necesitas. Su
+                elegancia felina y sus travesuras los convierten en los reyes
+                del hogar.
+            </p>
+        </div>
+    </body>
+</html>
+"
