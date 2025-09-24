@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Akebia: Object-Fit & Object-Position Example</title>
+        <style>
+            body {
+                background: linear-gradient(120deg, #a3c9a8 0%, #5e8c61 100%);
+                font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+                color: #222;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                max-width: 1000px;
+                margin: 40px auto;
+                background: rgba(255, 255, 255, 0.92);
+                border-radius: 18px;
+                box-shadow: 0 4px 24px 0 rgba(94, 140, 97, 0.18);
+                padding: 32px 24px;
+            }
+            h1 {
+                text-align: center;
+                color: #3e5c4b;
+                margin-bottom: 8px;
+            }
+            .subtitle {
+                text-align: center;
+                color: #5e8c61;
+                font-size: 18px;
+                margin-bottom: 28px;
+            }
+            .info {
+                margin-bottom: 28px;
+            }
+            .topics {
+                font-weight: bold;
+                color: #4b6e4b;
+                font-size: 20px;
+                margin-top: 18px;
+                margin-bottom: 8px;
+            }
+            .akebia-img {
+                display: block;
+                margin: 0 auto 28px auto;
+                width: 340px;
+                height: 240px;
+                object-fit: cover;
+                object-position: center 30%;
+                border-radius: 16px;
+                border: 3px solid #5e8c61;
+                box-shadow: 0 4px 18px 0 rgba(94, 140, 97, 0.13);
+                background: #fff;
+                max-width: 95vw;
+            }
+            @media (max-width: 800px) {
+                .container {
+                    padding: 12px 2vw;
+                }
+                .img-demo {
+                    gap: 16px;
+                }
+                .img-card {
+                    width: 98vw;
+                    max-width: 320px;
+                }
+                .img-card img {
+                    width: 90vw;
+                    max-width: 220px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Akebia</h1>
+            <img
+                class="akebia-img"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSFMa8d0kAA-p9q7gi-U7igtvvlncZEuiw5A&s"
+                alt="Akebia quinata (Chocolate vine)"
+            />
+            <div class="info">
+                <span class="topics">Description</span>
+                <p>
+                    Akebia is a vigorous, woody climbing plant with palmate
+                    leaves and clusters of fragrant purple flowers. Its fruits
+                    are elongated, sausage-shaped, and edible, with a sweet,
+                    jelly-like pulp. It is valued for its ornamental appeal and
+                    rapid growth, making it ideal for covering fences, pergolas,
+                    or walls.
+                </p>
+                <span class="topics">Habitat</span>
+                <p>
+                    It naturally inhabits forest edges, thickets, and hillsides
+                    in East Asia. It prefers well-drained soils and can thrive
+                    in both full sun and partial shade. In gardens, it adapts to
+                    various conditions and is valued for its ability to quickly
+                    cover structures.
+                </p>
+                <img
+                    class="akebia-img"
+                    src="https://www.researchgate.net/publication/356912460/figure/fig1/AS:11431281244146973@1715856719134/Distribution-of-the-occurrence-record-of-Akebia-quinata-in-the-world.tif"
+                    alt="Akebia habitat: forest edge in East Asia"
+                    style="margin-bottom: 18px"
+                />
+                <span class="topics">Uses</span>
+                <div
+                    style="
+                        display: flex;
+                        gap: 32px;
+                        justify-content: center;
+                        align-items: flex-start;
+                        flex-wrap: wrap;
+                        margin-bottom: 16px;
+                    "
+                >
+                    <div style="text-align: center; min-width: 120px">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/128/2909/2909769.png"
+                            alt="Ornamental use icon"
+                            width="48"
+                            height="48"
+                            style="margin-bottom: 8px"
+                        />
+                        <div style="font-size: 15px; color: #3e5c4b">
+                            Ornamental<br /><span
+                                style="font-size: 13px; color: #666"
+                                >Decorative foliage & flowers</span
+                            >
+                        </div>
+                    </div>
+                    <div style="text-align: center; min-width: 120px">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/128/1046/1046857.png"
+                            alt="Edible fruit icon"
+                            width="48"
+                            height="48"
+                            style="margin-bottom: 8px"
+                        />
+                        <div style="font-size: 15px; color: #3e5c4b">
+                            Edible Fruit<br /><span
+                                style="font-size: 13px; color: #666"
+                                >Used in local cuisine</span
+                            >
+                        </div>
+                    </div>
+                    <div style="text-align: center; min-width: 120px">
+                        <img
+                            src="https://cdn-icons-png.flaticon.com/128/3176/3176297.png"
+                            alt="Medicinal use icon"
+                            width="48"
+                            height="48"
+                            style="margin-bottom: 8px"
+                        />
+                        <div style="font-size: 15px; color: #3e5c4b">
+                            Traditional Medicine<br /><span
+                                style="font-size: 13px; color: #666"
+                                >Anti-inflammatory & diuretic</span
+                            >
+                        </div>
+                    </div>
+                </div>
+                <span class="topics">Ecological Importance</span>
+                <p>
+                    Akebia provides food for wildlife, including birds and
+                    insects that feed on its flowers and fruits. As a climbing
+                    plant, it offers shelter and habitat for small animals and
+                    helps prevent soil erosion on slopes and disturbed areas.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
