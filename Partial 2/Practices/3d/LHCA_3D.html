@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>3D — Landmark 81 (ejemplo)</title>
+        <style>
+            :root {
+                --bg: #0f1724;
+                --card: #0b1220;
+                --accent: #ffcc00;
+                --muted: #9aa4b2;
+                --gap: 1.25rem;
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient(180deg, var(--bg), #071021);
+                color: #e6eef6;
+                padding: 2rem;
+            }
+
+            header {
+                max-width: 1000px;
+                margin: 0 auto 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+                margin: 0;
+            }
+            p.lead {
+                margin: 0;
+                color: var(--muted);
+            }
+
+            .scene {
+                max-width: 1000px;
+                margin: 0 auto 2rem;
+                perspective: 1200px;
+            }
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: var(--gap);
+            }
+
+            .card {
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.02),
+                    transparent
+                );
+                border-radius: 12px;
+                padding: 1rem;
+                transform-style: preserve-3d;
+                transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                    box-shadow 0.3s;
+                box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Imagen con efecto 3D: usamos transform-style: preserve-3d y translateZ */
+            .card__wrap {
+                width: 100%;
+                height: 240px;
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+                transform-style: preserve-3d;
+                transition: transform 0.45s ease, box-shadow 0.45s ease;
+            }
+            .card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transform-origin: center center;
+                transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+            }
+
+            /* Estado por defecto con varias transformaciones aplicadas */
+            .card--one .card img {
+                transform: rotateY(-15deg) rotateX(6deg) translateZ(20px)
+                    scale(1.02);
+            }
+            .card--two .card img {
+                transform: rotateZ(-4deg) skewY(-2deg) translateZ(10px);
+            }
+            .card--three .card img {
+                transform: rotateY(14deg) rotateX(-6deg) translateZ(30px)
+                    scale(0.98);
+            }
+
+            /* Hover: invertir y usar más profundidad */
+            .card:hover {
+                transform: translateY(-8px) translateZ(20px);
+                box-shadow: 0 18px 40px rgba(2, 6, 23, 0.75);
+            }
+            .card:hover .card__wrap {
+                transform: translateZ(60px) rotateZ(2deg);
+            }
+            .card:hover .card img {
+                transform: rotateY(0deg) rotateX(0deg) translateZ(80px)
+                    scale(1.08);
+            }
+
+            /* Efecto interactivo: cuando el ratón se mueva sobre la tarjeta, aplicaremos transformaciones desde JS */
+            .caption {
+                width: 100%;
+                padding-top: 0.75rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+            .title {
+                font-weight: 700;
+            }
+            .meta {
+                font-size: 0.9rem;
+                color: var(--muted);
+            }
+
+            /* Secciones de información */
+            main.info {
+                max-width: 1000px;
+                margin: 2rem auto;
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.02),
+                    transparent
+                );
+                padding: 1.25rem;
+                border-radius: 10px;
+            }
+            dl {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            dt {
+                font-weight: 700;
+                color: var(--accent);
+            }
+            dd {
+                margin: 0;
+                color: var(--muted);
+            }
+
+            footer {
+                max-width: 1000px;
+                margin: 2rem auto;
+                color: var(--muted);
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: 600px) {
+                dl {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div>
+                <h1>Tecnicas 3D con imágenes — Landmark 81 (ejemplo)</h1>
+                <p class="lead">
+                    Demostración de transformaciones CSS 3D aplicadas a imágenes
+                    y ficha informativa sobre Landmark 81 (Vingroup Landmark
+                    81).
+                </p>
+            </div>
+        </header>
+
+        <section class="scene">
+            <div class="gallery">
+                <article class="card card--one" data-card-index="1">
+                    <div class="card__wrap">
+                        <img
+                            src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?auto=format&fit=crop&w=1000&q=80"
+                            alt="Landmark 81 — vista exterior"
+                        />
+                    </div>
+                    <div class="caption">
+                        <div class="title">Vista lateral</div>
+                        <div class="meta">
+                            RotateY, rotateX, translateZ, scale
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card card--two" data-card-index="2">
+                    <div class="card__wrap">
+                        <img
+                            src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1000&q=80"
+                            alt="Detalle estructural / fachada — vista cercana"
+                        />
+                    </div>
+                    <div class="caption">
+                        <div class="title">Composición inclinada</div>
+                        <div class="meta">rotateZ, skew, translateZ</div>
+                    </div>
+                </article>
+
+                <article class="card card--three" data-card-index="3">
+                    <div class="card__wrap">
+                        <!-- Imagen en línea: vista nocturna / skyline -->
+                        <img
+                            src="https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=1000&q=80"
+                            alt="Landmark 81 — vista nocturna / skyline"
+                        />
+                    </div>
+                    <div class="caption">
+                        <div class="title">Silueta - Torre</div>
+                        <div class="meta">rotateY, rotateX, translateZ</div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <main class="info" aria-labelledby="info-title">
+            <h2 id="info-title">Ficha: Landmark 81 (resumen)</h2>
+            <p class="lead">
+                Datos clave sobre Vingroup Landmark 81 — rascacielos emblemático
+                de Ho Chi Minh, Vietnam.
+            </p>
+
+            <dl>
+                <div>
+                    <dt>Breve historia</dt>
+                    <dd>
+                        Landmark 81 es un rascacielos desarrollado por Vingroup;
+                        su construcción comenzó en 2014 y se completó en 2018.
+                        Es el edificio más alto de Vietnam y uno de los más
+                        altos del sudeste asiático.
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Altura</dt>
+                    <dd>461.2 metros (altitud estructural máxima).</dd>
+                </div>
+
+                <div>
+                    <dt>Ciudad</dt>
+                    <dd>Ho Chi Minh City, Vietnam (Vinhomes Central Park).</dd>
+                </div>
+
+                <div>
+                    <dt>Plantas</dt>
+                    <dd>
+                        81 plantas (de ahí su nombre), con usos mixtos:
+                        residencias, hotel, oficinas y observatorio.
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Antigüedad</dt>
+                    <dd>
+                        Construcción finalizada en 2018 — actualmente tiene
+                        pocos años.
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Material y uso</dt>
+                    <dd>
+                        Estructura de hormigón y acero; uso mixto: residencial
+                        de alta gama, hotel de lujo, oficinas, comercio y
+                        mirador turístico.
+                    </dd>
+                </div>
+            </dl>
+        </main>
+
+        <footer>
+            <p>
+                Transformaciones usadas: rotateX, rotateY, rotateZ, translateZ,
+                scale y skew (al menos 4 aplicadas en la demo).
+            </p>
+        </footer>
+
+        <script>
+            // Pequeño efecto: al mover el ratón sobre cada tarjeta, inclinamos la imagen para reforzar la sensación 3D.
+            document.querySelectorAll(".card").forEach((card) => {
+                const wrap = card.querySelector(".card__wrap");
+                card.addEventListener("mousemove", (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    const rotateY = (x / rect.width) * 18; // -18..18deg
+                    const rotateX = -(y / rect.height) * 12; // -12..12deg
+                    // Aplicamos rotateX, rotateY, translateZ (más transformaciones dinámicas)
+                    wrap.style.transform = `translateZ(40px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    // sutil desplazamiento de la imagen interior
+                    const img = card.querySelector("img");
+                    if (img)
+                        img.style.transform = `rotateY(${
+                            rotateY * -0.6
+                        }deg) rotateX(${
+                            rotateX * -0.6
+                        }deg) translateZ(60px) scale(1.03)`;
+                });
+                card.addEventListener("mouseleave", () => {
+                    wrap.style.transform = "";
+                    const img = card.querySelector("img");
+                    if (img) img.style.transform = "";
+                });
+            });
+        </script>
+    </body>
+</html>
