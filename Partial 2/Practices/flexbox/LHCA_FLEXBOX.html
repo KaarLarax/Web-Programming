@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Baobab — Flexbox Practice</title>
+        <meta
+            <!doctype html>
+            <html lang="en">
+              <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width,initial-scale=1">
+                <title>Baobab — Flexbox Practice</title>
+                <meta name="description" content="Simple page about the Baobab tree using only HTML and CSS (Flexbox).">
+                <style>
+                  /* Simple, pleasant palette and Flexbox layout. No external CSS frameworks. */
+                  :root{
+                    --gap:16px;
+                    --sidebar-width:260px;
+                    --accent:#2b6e4f; /* deep green */
+                    --muted:#475569;
+                    --bg:#fbfbf9;
+                    --card:#ffffff;
+                    font-family: Arial, Helvetica, sans-serif;
+                  }
+                  *{box-sizing:border-box}
+                  body{margin:0;background:var(--bg);color:#0b0b0b;line-height:1.5}
+
+                  header{background:var(--accent);color:#fff;padding:16px;display:flex;align-items:center;gap:12px}
+                  header img{width:56px;height:56px;object-fit:cover;border-radius:6px}
+                  header h1{margin:0;font-size:18px}
+                  header p{margin:0;font-size:13px;opacity:0.95}
+
+                  .container{display:flex;gap:var(--gap);max-width:1100px;margin:18px auto;padding:0 12px}
+                  .sidebar{flex:0 0 var(--sidebar-width);padding:12px;border-radius:8px;background:var(--card);border:1px solid #e6e6e6}
+                  .main{flex:1;display:flex;flex-direction:column;gap:var(--gap)}
+
+                  .cards{display:flex;flex-wrap:wrap;gap:var(--gap)}
+                  .card{flex:1 1 320px;padding:12px;border-radius:8px;background:var(--card);border:1px solid #ececec}
+                  h2{margin:0 0 8px 0;color:var(--accent)}
+                  h3{margin:0 0 8px 0;color:var(--muted)}
+                  p,li{margin:0 0 8px 0}
+                  ul{padding-left:20px;margin:0 0 8px 0}
+
+                  img.responsive{max-width:100%;height:auto;border-radius:6px;display:block;margin-top:8px}
+
+                  table{width:100%;border-collapse:collapse}
+                  td{padding:6px 8px;border-top:1px solid #f3f3f3}
+
+                  footer{max-width:1100px;margin:12px auto;padding:0 12px;color:var(--muted);font-size:13px}
+
+                  @media (max-width:900px){
+                    .container{flex-direction:column}
+                    .sidebar{order:2;width:100%;flex:0 0 auto}
+                  }
+                </style>
+              </head>
+              <body>
+                <header>
+                  <!-- header thumbnail: external image link -->
+                  <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&q=80&auto=format&fit=crop" alt="leaf thumbnail">
+                  <div>
+                    <h1>Baobab (Adansonia)</h1>
+                    <p>Simple Flexbox layout — General data, Description, Habitat, Taxonomy, Uses</p>
+                  </div>
+                </header>
+
+                <main class="container" role="main">
+                  <aside class="sidebar" aria-label="Quick facts">
+                    <strong>Quick facts</strong>
+                    <p style="margin-top:8px"><strong>Common name:</strong> Baobab</p>
+                    <p><strong>Scientific name:</strong> Adansonia</p>
+                    <p><strong>Family:</strong> Malvaceae</p>
+                    <p><strong>Height:</strong> 5–30 m</p>
+                    <p><strong>Trunk diameter:</strong> Up to 11 m</p>
+                    <p><strong>Lifespan:</strong> Several hundred to over 2,000 years</p>
+                    <img class="responsive" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80&auto=format&fit=crop" alt="baobab tree">
+                  </aside>
+
+                  <section class="main">
+                    <div class="cards">
+                      <article class="card" id="general">
+                        <h2>General data</h2>
+                        <p>The Baobab (genus Adansonia) includes several species of trees known for their large trunks and long lifespans. They are often called "the tree of life" for their many uses.</p>
+                        <ul>
+                          <li>Genus: Adansonia</li>
+                          <li>Distribution: Africa, Madagascar, Australia (species-dependent)</li>
+                          <li>Growth form: Thick trunk and a branched canopy</li>
+                        </ul>
+                      </article>
+
+                      <article class="card" id="description">
+                        <h2>Description</h2>
+                        <p>Baobabs have swollen trunks that store water. Bark is usually smooth and pale. Canopies may be sparse in the dry season. Flowers are large and often pollinated at night.</p>
+                        <img class="responsive" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80&auto=format&fit=crop" alt="baobab trunk">
+                      </article>
+
+                      <article class="card" id="habitat">
+                        <h2>Habitat</h2>
+                        <p>They grow in dry regions adapted to seasonal droughts. Typical habitats:</p>
+                        <ul>
+                          <li>Savannas and dry woodlands</li>
+                          <li>Sandy or rocky soils with good drainage</li>
+                          <li>Open landscapes where individual trees stand out</li>
+                        </ul>
+                        <img class="responsive" src="https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=1200&q=80&auto=format&fit=crop" alt="savanna landscape">
+                      </article>
+
+                      <article class="card" id="taxonomy">
+                        <h2>Taxonomy</h2>
+                        <table>
+                          <tr><td><strong>Kingdom</strong></td><td>Plantae</td></tr>
+                          <tr><td><strong>Clade</strong></td><td>Angiosperms</td></tr>
+                          <tr><td><strong>Order</strong></td><td>Malvales</td></tr>
+                          <tr><td><strong>Family</strong></td><td>Malvaceae</td></tr>
+                          <tr><td><strong>Genus</strong></td><td>Adansonia</td></tr>
+                          <tr><td><strong>Examples</strong></td><td>Adansonia digitata, A. grandidieri, A. gregorii</td></tr>
+                        </table>
+                      </article>
+
+                      <article class="card" id="uses">
+                        <h2>Uses</h2>
+                        <ul>
+                          <li><strong>Food:</strong> Fruit pulp is high in vitamin C; seeds used for oil.</li>
+                          <li><strong>Medicine:</strong> Bark and leaves used in traditional remedies.</li>
+                          <li><strong>Water:</strong> Trunk stores water during droughts.</li>
+                          <li><strong>Materials:</strong> Bark fiber for rope and mats.</li>
+                          <li><strong>Cultural:</strong> Sacred trees, community landmarks.</li>
+                        </ul>
+                      </article>
+                    </div>
+
+                    <article class="card">
+                      <h3>Conservation</h3>
+                      <p>Some species face threats from habitat loss and climate change. Conservation focuses on habitat protection and sustainable use.</p>
+                    </article>
+                  </section>
+                </main>
+              </body>
+            </html>
+                </article>
+            </section>
+        </main>
+    </body>
+</html>
