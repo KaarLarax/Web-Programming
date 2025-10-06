@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Pagani Huayra Imola — Ficha y galería (paginación)</title>
+        <style>
+            body {
+                font-family: system-ui, Segoe UI, Roboto, Arial;
+                background: #f4f6f8;
+                color: #0b1720;
+                margin: 0;
+                padding: 2rem;
+            }
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+            header {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+            h1 {
+                margin: 0.2rem 0;
+            }
+            .lead {
+                color: #556;
+                text-transform: none;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 360px;
+                gap: 1.25rem;
+                margin-top: 1rem;
+            }
+
+            .card {
+                background: white;
+                border-radius: 10px;
+                padding: 1rem;
+                box-shadow: 0 6px 18px rgba(12, 18, 28, 0.06);
+            }
+
+            .specs dl {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+            dt {
+                font-weight: 700;
+                color: #0b72a7;
+            }
+            dd {
+                margin: 0;
+                color: #4a5568;
+            }
+
+            /* Galería y paginación */
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.6rem;
+            }
+            .thumb {
+                height: 160px;
+                overflow: hidden;
+                border-radius: 8px;
+                position: relative;
+            }
+            .thumb img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.4s;
+            }
+            .thumb:hover img {
+                transform: scale(1.05);
+            }
+
+            .pager {
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0.75rem 0;
+            }
+            .pager button {
+                background: #0b72a7;
+                color: white;
+                border: 0;
+                padding: 0.45rem 0.7rem;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+            .pager button[disabled] {
+                opacity: 0.45;
+                cursor: default;
+            }
+
+            @media (max-width: 900px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+            @media (max-width: 640px) {
+                .gallery {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .thumb {
+                    height: 120px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div>
+                    <h1>Pagani Huayra Imola</h1>
+                    <div class="lead">
+                        Edición especial de Pagani — alta performance, diseño
+                        extremo.
+                    </div>
+                </div>
+                <div style="text-align: right; color: #6b7280">
+                    Categoría: Automóviles / Supercars
+                </div>
+            </header>
+
+            <div class="grid">
+                <section class="card">
+                    <h2>Descripción general</h2>
+                    <p>
+                        El Pagani Huayra Imola es una versión enfocada a pista
+                        del Huayra, desarrollada por Pagani Automobili con
+                        mejoras aerodinámicas, reducción de peso y una puesta a
+                        punto extrema. Fabricado en cantidades limitadas, ofrece
+                        una experiencia de manejo visceral y prestaciones
+                        excepcionales.
+                    </p>
+
+                    <h3>Ficha técnica</h3>
+                    <div class="specs">
+                        <dl>
+                            <div>
+                                <dt>Motor</dt>
+                                <dd>
+                                    V12 biturbo (Mercedes-AMG), posición central
+                                    trasera
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Potencia</dt>
+                                <dd>
+                                    ~827 CV (dependiendo de la configuración)
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt>Torque</dt>
+                                <dd>
+                                    ~1,100 Nm (estimado en picos, según mapas de
+                                    motor)
+                                </dd>
+                            </div>
+                            <div>
+                                <dt>Transmisión</dt>
+                                <dd>
+                                    Automática/secuencial, cambio Huayra
+                                    específico
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt>0-100 km/h</dt>
+                                <dd>Aproximadamente 2.8 - 3.0 s</dd>
+                            </div>
+                            <div>
+                                <dt>Velocidad máxima</dt>
+                                <dd>
+                                    Limitada electrónicamente; superior a 350
+                                    km/h en configuraciones de pista
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <h3>Precio</h3>
+                    <p>
+                        Precio aproximado de lanzamiento: > 5 millones USD
+                        (varía según especificaciones y mercado).
+                    </p>
+
+                    <h3>País de origen</h3>
+                    <p>Italia (Pagani Automobili, San Cesario sul Panaro).</p>
+
+                    <h3>Versiones</h3>
+                    <ul>
+                        <li>Huayra Roadster</li>
+                        <li>Huayra BC</li>
+                        <li>Huayra Imola (edición limitada)</li>
+                    </ul>
+                </section>
+
+                <aside class="card">
+                    <h3>Galería — Pagani Huayra Imola</h3>
+                    <div id="gallery" class="gallery" aria-live="polite">
+                        <!-- Thumbnails insertadas por JS -->
+                    </div>
+
+                    <div class="pager" id="pager">
+                        <button id="prev">Anterior</button>
+                        <div id="pages"></div>
+                        <button id="next">Siguiente</button>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #6b7280; margin: 0">
+                        Imágenes de referencia (fotos en línea).
+                    </p>
+                </aside>
+            </div>
+        </div>
+
+        <script>
+            // Lista de imágenes (URLs públicas) relacionadas con Pagani Huayra / Imola
+            const images = [
+                "https://upload.wikimedia.org/wikipedia/commons/8/84/Pagani_Huayra%2C_Geneva_2016_%281%29.jpg",
+                "https://cdn.motor1.com/images/mgl/0x1Zr/s1/pagani-huayra-imola.jpg",
+                "https://www.topgear.com/sites/default/files/2020/06/pagani_huayra_imola_01.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/4/4e/Pagani_Huayra_%28Paris_2016%29_01.jpg",
+                "https://cdn.pistonheads.com/prod/s3fs-public/styles/news_article_large/public/2019/12/hartley-pagani-huayra-1.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/6/66/Pagani_Huayra_%28Geneva_2013%29_04.jpg",
+                "https://images.hgmsites.net/med/pagani-huayra-imola-2020_100747699_m.jpg",
+                "https://cdn.motor1.com/images/mgl/8xqgZ/s1/pagani-huayra.jpg",
+                "https://www.motortrend.com/uploads/sites/5/2020/05/2021-Pagani-Huayra-Imola-003.jpg",
+            ];
+
+            // Paginación simple: mostrar N por página
+            const perPage = 3;
+            let current = 1;
+            const totalPages = Math.ceil(images.length / perPage);
+
+            const gallery = document.getElementById("gallery");
+            const pagesWrap = document.getElementById("pages");
+            const prevBtn = document.getElementById("prev");
+            const nextBtn = document.getElementById("next");
+
+            function renderPage(page) {
+                current = Math.max(1, Math.min(page, totalPages));
+                gallery.innerHTML = "";
+                const start = (current - 1) * perPage;
+                const end = start + perPage;
+                const slice = images.slice(start, end);
+                slice.forEach((url) => {
+                    const div = document.createElement("div");
+                    div.className = "thumb";
+                    const img = document.createElement("img");
+                    img.src = url + "?auto=format&fit=crop&w=800&q=80";
+                    img.alt = "Pagani Huayra Imola — imagen";
+                    img.loading = "lazy";
+                    div.appendChild(img);
+                    gallery.appendChild(div);
+                });
+                renderPager();
+            }
+
+            function renderPager() {
+                pagesWrap.innerHTML = "";
+                for (let i = 1; i <= totalPages; i++) {
+                    const b = document.createElement("button");
+                    b.textContent = i;
+                    b.style.padding = ".35rem .5rem";
+                    b.style.borderRadius = "6px";
+                    b.style.border = "none";
+                    b.style.cursor = "pointer";
+                    b.style.background = i === current ? "#0b72a7" : "#e6eef6";
+                    b.style.color = i === current ? "white" : "#0b1720";
+                    b.addEventListener("click", () => renderPage(i));
+                    pagesWrap.appendChild(b);
+                }
+                prevBtn.disabled = current === 1;
+                nextBtn.disabled = current === totalPages;
+            }
+
+            prevBtn.addEventListener("click", () => renderPage(current - 1));
+            nextBtn.addEventListener("click", () => renderPage(current + 1));
+
+            // Inicializar
+            renderPage(1);
+        </script>
+    </body>
+</html>
