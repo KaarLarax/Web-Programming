@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta title="Day of the Week">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Day of the Week</title>
+        <link rel="stylesheet" href="dayofweek.css">
+    </head>
+    <body>
+        <h1>Day of Weeks</h1>
+        <img src="images/France_Germany.svg" alt="Day of the Week">
+        <p>Enter your gender and the day of your preference.</p>
+        <form>
+            <label>Gender:</label>
+            <select name="gender" id="gender-select">
+                <option value="">--Please choose an option--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label>Day:</label>
+            <select name="day" id="day-select">
+                <option value="">--Please choose an option--</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+            </select>
+            <center><button type="button" name="submit" id="button-submit" onclick="dayOfWeek()">Run</button></center>
+        </form>
+        <p id="result"></p>
+        <script src="dayofweek.js"></script>
+    </body>
+</html>
