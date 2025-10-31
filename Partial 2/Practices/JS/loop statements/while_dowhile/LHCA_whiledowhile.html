@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Verificación de Contraseña</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                color: #333;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                text-align: center;
+                padding: 20px;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                color: #4caf50;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .error {
+                color: #f44336;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="message-container">
+        </div>
+
+        <script>
+            function login() {
+                const correctPassword = "password123";
+                let attempts = 0;
+                const maxAttempts = 3;
+                let enteredPassword;
+
+                do {
+                    enteredPassword = prompt(
+                        `Introduce la contraseña. Tienes ${
+                            maxAttempts - attempts
+                        } intentos.`
+                    );
+                    attempts++;
+
+                    if (enteredPassword === correctPassword) {
+                        displayMessage(
+                            "<h1>¡Bienvenido!</h1><p>Has iniciado sesión correctamente.</p>",
+                            false
+                        );
+                        return;
+                    } else {
+                        if (attempts < maxAttempts) {
+                            alert(
+                                `Contraseña incorrecta. Te quedan ${
+                                    maxAttempts - attempts
+                                } intentos.`
+                            );
+                        }
+                    }
+                } while (
+                    attempts < maxAttempts &&
+                    enteredPassword !== correctPassword
+                );
+
+                if (enteredPassword !== correctPassword) {
+                    displayMessage(
+                        "<h1>Acceso Denegado</h1><p class='error'>Has agotado tus 3 intentos.</p>",
+                        true
+                    );
+                }
+            }
+
+            function displayMessage(message, isError) {
+                const container = document.getElementById("message-container");
+                container.innerHTML = message;
+                if (isError) {
+                    container.querySelector("h1").style.color = "#f44336";
+                }
+            }
+            login();
+        </script>
+    </body>
+</html>
