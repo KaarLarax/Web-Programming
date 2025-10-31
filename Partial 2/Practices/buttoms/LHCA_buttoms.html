@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mustangs de Las Colinas</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 20px;
+            }
+            h1 {
+                text-align: center;
+                color: #2c3e50;
+            }
+            .button-container {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 5px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+            .button:hover {
+                background-color: #2980b9;
+            }
+            .content {
+                display: none;
+                padding: 20px;
+                border: 1px solid #ddd;
+                background-color: white;
+                border-radius: 5px;
+                margin-top: 10px;
+            }
+            .active {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Mustangs de Las Colinas</h1>
+
+        <div class="button-container">
+            <button class="button" onclick="showContent('ciudad')">
+                Ciudad
+            </button>
+            <button class="button" onclick="showContent('pais')">País</button>
+            <button class="button" onclick="showContent('material')">
+                Material
+            </button>
+            <button class="button" onclick="showContent('historia')">
+                Historia
+            </button>
+        </div>
+
+        <div id="ciudad" class="content">
+            <h2>Ciudad</h2>
+            <p>Irving</p>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Irving_Convention_Center_at_Las_Colinas.jpg/640px-Irving_Convention_Center_at_Las_Colinas.jpg"
+                alt="Ciudad de Irving"
+                width="300"
+            />
+        </div>
+        <div id="pais" class="content">
+            <h2>País</h2>
+            <p>Texas, USA</p>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Texas_in_United_States.svg/1200px-Texas_in_United_States.svg.png"
+                alt="Estado de Texas"
+                width="300"
+            />
+        </div>
+        <div id="material" class="content">
+            <h2>Material</h2>
+            <p>Bronce</p>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Giacometti-Grande-Femme-Debout-II-Bronze-Fondation-Beyeler-CH.jpg/800px-Giacometti-Grande-Femme-Debout-II-Bronze-Fondation-Beyeler-CH.jpg"
+                alt="Escultura de Bronce"
+                width="300"
+            />
+        </div>
+
+        <div id="historia" class="content">
+            <h2>Historia</h2>
+            <p>
+                La escultura de los "Mustangs de Las Colinas" es una obra de
+                bronce creada por Robert Glen, que adorna la Williams Square en
+                Las Colinas, Irving, Texas. Se dice que es la escultura ecuestre
+                más grande del mundo. La obra conmemora a los mustangs salvajes
+                que fueron habitantes históricamente importantes en gran parte
+                de Texas.
+            </p>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Mustangs_of_Las_Colinas_2.jpg/1280px-Mustangs_of_Las_Colinas_2.jpg"
+                alt="Mustangs de Las Colinas"
+                width="300"
+            />
+        </div>
+
+        <script>
+            function showContent(id) {
+                var contents = document.querySelectorAll(".content");
+                contents.forEach(function (content) {
+                    content.classList.remove("active");
+                });
+                var selectedContent = document.getElementById(id);
+                if (selectedContent) {
+                    selectedContent.classList.add("active");
+                }
+            }
+        </script>
+    </body>
+</html>
