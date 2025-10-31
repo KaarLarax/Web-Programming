@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="combustible.css" />
+    </head>
+    <body>
+        <h1>Cálculo de eficiencia de combustible</h1>
+        <p>
+            Los combustibles que admite esta página para realizar las
+            estimaciones son los siguientes:
+        </p>
+        <ul>
+            <li>Gasolina (L)</li>
+            <li>Diésel (L)</li>
+            <li>Eléctrico (kWh)</li>
+        </ul>
+        <div id="image-row" aria-hidden="false">
+            <img class="fuel-img" id="img1" alt="" src="" />
+            <img class="fuel-img" id="img2" alt="" src="" />
+            <img class="fuel-img" id="img3" alt="" src="" />
+        </div>
+        <h3>Ingrese la información solicitada:</h3>
+        <form id="buttoms">
+            <label for="combustible">Combustible</label>
+            <select id="combustible" name="combustible" required>
+                <option value="">--Seleccione--</option>
+                <option value="Gasolina">Gasolina (L)</option>
+                <option value="Diésel">Diésel (L)</option>
+                <option value="Eléctrico">Eléctrico (kWh)</option>
+            </select>
+            <br />
+            <label for="distance">Distancia recorrida</label>
+            <input type="number" id="distance" name="distance" required />
+            <br />
+            <label for="consumototal">Consumo total</label>
+            <input
+                type="number"
+                id="consumototal"
+                name="consumototal"
+                required
+            />
+            <br />
+            <button type="submit">Calcular eficiencia</button>
+        </form>
+        <p id="eficiencia"></p>
+        <div id="recomendaciones" aria-live="polite"></div>
+        <br />
+        <script>
+            (function () {
+                const select = document.getElementById("combustible");
+                const imgs = [
+                    document.getElementById("img1"),
+                    document.getElementById("img2"),
+                    document.getElementById("img3"),
+                ];
+
+                function getImagesFor(fuel) {
+                    switch (fuel) {
+                        case "Gasolina":
+                            return [
+                                "images/gasolina.jpg",
+                                "images/gasolina.jpg",
+                                "images/gasolina.jpg",
+                            ];
+                        case "Diésel":
+                            return [
+                                "images/diesel.jpg",
+                                "images/diesel.jpg",
+                                "images/diesel.jpg",
+                            ];
+                        case "Eléctrico":
+                            return [
+                                "images/electrico.jpg",
+                                "images/electrico.jpg",
+                                "images/electrico.jpg",
+                            ];
+                        default:
+                            return ["", "", ""];
+                    }
+                }
+
+                function setBlank(img) {
+                    img.removeAttribute("src");
+                    img.classList.add("blank");
+                    img.alt = "";
+                }
+
+                function setSrc(img, src, alt) {
+                    img.classList.remove("blank");
+                    img.alt = alt || "";
+                    img.src = src;
+                }
+
+                imgs.forEach((img) => {
+                    img.addEventListener("error", function () {
+                        setBlank(img);
+                    });
+                    setBlank(img);
+                });
+
+                function updateImages() {
+                    const value = select.value;
+                    const sources = getImagesFor(value);
+                    imgs.forEach((img, i) => {
+                        const src = sources[i] || "";
+                        if (src) {
+                            setSrc(img, src, `${value} imagen ${i + 1}`);
+                        } else {
+                            setBlank(img);
+                        }
+                    });
+                }
+                updateImages();
+                select.addEventListener("change", updateImages);
+            })();
+
+            document
+                .getElementById("buttoms")
+                .addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    try {
+                        const combustible =
+                            document.getElementById("combustible").value;
+                        const distance = parseFloat(
+                            document.getElementById("distance").value
+                        );
+                        const consumototal = parseFloat(
+                            document.getElementById("consumototal").value
+                        );
+                        if (
+                            combustible &&
+                            combustible !== "" &&
+                            !isNaN(distance) &&
+                            distance > 0 &&
+                            !isNaN(consumototal) &&
+                            consumototal > 0
+                        ) {
+                            var eficiencia = consumototal / distance; // litros o kWh por km
+                            var bajaEficiencia;
+                            var normalEficiencia;
+                            var altaEficiencia;
+                            switch (combustible) {
+                                case "Gasolina":
+                                    bajaEficiencia = 0.5;
+                                    normalEficiencia = 0.2;
+                                    altaEficiencia = 0.1;
+                                    break;
+                                case "Diésel":
+                                    bajaEficiencia = 0.5;
+                                    normalEficiencia = 0.15;
+                                    altaEficiencia = 0.1;
+                                    break;
+                                case "Eléctrico":
+                                    bajaEficiencia = 0.8;
+                                    normalEficiencia = 0.32;
+                                    altaEficiencia = 0.25;
+                                    break;
+                                default:
+                                    alert(
+                                        "Tipo de combustible no válido. Use Gasolina, Diésel o Eléctrico."
+                                    );
+                                    return;
+                            }
+                            var categoria = "";
+                            if (eficiencia >= bajaEficiencia) {
+                                categoria = "Baja";
+                            } else if (
+                                eficiencia < bajaEficiencia &&
+                                eficiencia >= normalEficiencia
+                            ) {
+                                categoria = "Normal";
+                            } else {
+                                categoria = "Alta";
+                            }
+                            var unidad =
+                                combustible === "Eléctrico" ? "kWh/km" : "L/km";
+                            document.getElementById(
+                                "eficiencia"
+                            ).innerText = `Eficiencia: ${eficiencia.toFixed(
+                                3
+                            )} ${unidad} — ${categoria}`;
+                            var recomendaciones = "";
+                            if (categoria === "Baja") {
+                                if (combustible === "Eléctrico") {
+                                    recomendaciones =
+                                        "Recomendaciones: Revise el estado de la batería, utilice la regeneración de frenado, evite aceleraciones bruscas y planifique rutas para reducir paradas. Mantenga la climatización a niveles moderados.";
+                                } else {
+                                    recomendaciones =
+                                        "Recomendaciones: Realice mantenimiento (filtro, bujías/inyectores), revise la presión de neumáticos, evite aceleraciones y frenadas bruscas, reduzca peso innecesario y mantenga velocidad constante cuando sea posible.";
+                                }
+                            } else if (categoria === "Normal") {
+                                if (combustible === "Eléctrico") {
+                                    recomendaciones =
+                                        "Recomendaciones: Mantenga hábitos de conducción eficientes (frenado regenerativo), evite cargas rápidas frecuentes, mantenga la batería en rango recomendado y haga mantenimiento regular.";
+                                } else {
+                                    recomendaciones =
+                                        "Recomendaciones: Mantenga mantenimiento preventivo, revise presión de neumáticos regularmente, use cambios de marcha adecuados (si aplica) y planifique rutas para evitar tráfico pesado.";
+                                }
+                            } else {
+                                if (combustible === "Eléctrico") {
+                                    recomendaciones =
+                                        "Buen trabajo: su consumo es eficiente. Siga con mantenimiento regular, use conducción regenerativa y evite cargas rápidas innecesarias para preservar la batería.";
+                                } else {
+                                    recomendaciones =
+                                        "Buen trabajo: su consumo es eficiente. Siga con mantenimiento regular, mantenga neumáticos bien inflados y conserve hábitos de conducción suave para mantener la eficiencia.";
+                                }
+                            }
+
+                            document.getElementById(
+                                "recomendaciones"
+                            ).innerText = recomendaciones;
+                        } else {
+                            alert(
+                                "Por favor, ingrese valores positivos para todos los campos."
+                            );
+                        }
+                    } catch (error) {
+                        console.error("Error al parsear los valores:", error);
+                    }
+                });
+        </script>
+    </body>
+</html>
