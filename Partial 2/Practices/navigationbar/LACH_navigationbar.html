@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Che Guevara — Navegación vertical</title>
+        <style>
+            :root {
+                --nav-width: 260px;
+                --bg: #f7f7f9;
+                --nav: #1f3b4d;
+                --accent: #c0392b;
+                --text: #111;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font-family: system-ui, -apple-system, Segoe UI, Roboto,
+                    "Helvetica Neue", Arial, sans-serif;
+                color: var(--text);
+                background: var(--bg);
+            }
+            .container {
+                display: flex;
+                min-height: 100vh;
+            }
+            nav.sidebar {
+                width: var(--nav-width);
+                background: linear-gradient(180deg, var(--nav), #16313a);
+                color: #fff;
+                padding: 2rem 1.25rem;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow: auto;
+            }
+            nav.sidebar h1 {
+                font-size: 1.1rem;
+                margin: 0 0 1rem;
+            }
+            nav.sidebar ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            nav.sidebar a {
+                display: block;
+                color: inherit;
+                text-decoration: none;
+                padding: 0.6rem 0.5rem;
+                border-radius: 0.35rem;
+                margin: 0.2rem 0;
+            }
+            nav.sidebar a:hover,
+            nav.sidebar a:focus {
+                background: rgba(255, 255, 255, 0.06);
+            }
+            main.content {
+                flex: 1;
+                padding: 3rem;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            section {
+                margin-bottom: 2.5rem;
+            }
+            section h2 {
+                margin-top: 0;
+                color: var(--accent);
+            }
+            @media (max-width: 780px) {
+                .container {
+                    flex-direction: column;
+                }
+                nav.sidebar {
+                    position: relative;
+                    width: 100%;
+                    height: auto;
+                    padding: 1rem 0;
+                    display: flex;
+                    overflow-x: auto;
+                }
+                nav.sidebar h1 {
+                    padding-left: 1rem;
+                }
+                nav.sidebar ul {
+                    display: flex;
+                    gap: 0.5rem;
+                    padding: 0 0.5rem;
+                }
+                nav.sidebar a {
+                    white-space: nowrap;
+                    padding: 0.6rem 0.9rem;
+                }
+                main.content {
+                    padding: 1.25rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="sidebar" aria-label="Navegación principal">
+                <h1>Che Guevara</h1>
+                <ul>
+                    <li><a href="#datos-personales">Datos personales</a></li>
+                    <li>
+                        <a href="#contexto-historico">Contexto histórico</a>
+                    </li>
+                    <li><a href="#logros">Logros</a></li>
+                    <li><a href="#caida">Caída</a></li>
+                </ul>
+            </nav>
+            <main class="content">
+                <section id="datos-personales">
+                    <h2>Datos personales</h2>
+                    <p>
+                        Ernesto "Che" Guevara nació el 14 de junio de 1928 en
+                        Rosario, Argentina. Fue médico, revolucionario y autor.
+                        Durante su vida viajó extensamente por América Latina y
+                        participó activamente en movimientos guerrilleros y
+                        gobiernos revolucionarios.
+                    </p>
+                </section>
+                <section id="contexto-historico">
+                    <h2>Contexto histórico</h2>
+                    <p>
+                        La región vivía fuertes desigualdades sociales y
+                        tensiones políticas. En la década de 1950 la Revolución
+                        Cubana impulsó cambios profundos en Cuba y convirtió a
+                        líderes como el Che en figuras clave del pensamiento
+                        antiimperialista en América Latina y el mundo.
+                    </p>
+                </section>
+                <section id="logros">
+                    <h2>Logros</h2>
+                    <p>
+                        Participó en la derrota del régimen de Batista y en la
+                        consolidación de la Revolución Cubana. Ejerció
+                        responsabilidades en salud y educación, y promovió la
+                        internacionalización de la lucha revolucionaria,
+                        convirtiéndose en símbolo de solidaridad.
+                    </p>
+                </section>
+                <section id="caida">
+                    <h2>Caída</h2>
+                    <p>
+                        Tras dejar cargos en Cuba, intentó fomentar
+                        insurrecciones en África y Bolivia. Fue capturado y
+                        ejecutado por el ejército boliviano el 9 de octubre de
+                        1967 en La Higuera, Bolivia, y su muerte consolidó su
+                        estatus como icono internacional.
+                    </p>
+                </section>
+            </main>
+        </div>
+    </body>
+</html>
