@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Billete de 20 Dólares de Namibia</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                background-color: #f4f4f4;
+            }
+            .grid-container {
+                display: grid;
+                grid-template-areas:
+                    "header header"
+                    "anverso reverso"
+                    "datos datos";
+                grid-gap: 20px;
+                padding: 20px;
+                max-width: 900px;
+                margin: auto;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .grid-item {
+                text-align: center;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            .header {
+                grid-area: header;
+                background-color: #4caf50;
+                color: white;
+            }
+            .anverso {
+                grid-area: anverso;
+            }
+            .reverso {
+                grid-area: reverso;
+            }
+            .datos {
+                grid-area: datos;
+                text-align: left;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+            }
+            h2 {
+                margin-top: 0;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                padding: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-item header">
+                <h1>Billete de 20 Dólares de Namibia</h1>
+            </div>
+            <div class="grid-item anverso">
+                <h2>Anverso</h2>
+                <img
+                    src="https://en.numista.com/catalogue/photos/namibie/62f0a3359b1959.95398292-original.jpg"
+                    alt="Anverso del billete de 20 dólares de Namibia"
+                />
+            </div>
+            <div class="grid-item reverso">
+                <h2>Reverso</h2>
+                <img
+                    src="https://en.numista.com/catalogue/photos/namibie/62f0a3361593a4.35322929-original.jpg"
+                    alt="Reverso del billete de 20 dólares de Namibia"
+                />
+            </div>
+            <div class="grid-item datos">
+                <h2>Datos Generales</h2>
+                <ul>
+                    <li><strong>País:</strong> Namibia</li>
+                    <li><strong>Valor:</strong> 20 Dólares Namibios (NAD)</li>
+                    <li>
+                        <strong>Figura en el anverso:</strong> Dr. Hage Geingob,
+                        tercer presidente de Namibia.
+                    </li>
+                    <li>
+                        <strong>Imagen en el reverso:</strong> Tres antílopes
+                        Red Hartebeest.
+                    </li>
+                    <li>
+                        <strong>Edificio en el anverso:</strong> Edificio del
+                        Parlamento de Namibia en Windhoek.
+                    </li>
+                    <li><strong>Material:</strong> Papel</li>
+                    <li><strong>Dimensiones:</strong> 134 x 70 mm</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
