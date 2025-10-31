@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Ubicación aproximada con BOM</title>
+</head>
+<body>
+  <h2>Detectar ubicación aproximada (sin permisos)</h2>
+  <div id="info"></div>
+
+  <script>
+    // --- Detectar idioma y zona horaria ---
+    const idioma = navigator.language || navigator.userLanguage;
+    const zona = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // --- Guardar en cookies (BOM) ---
+    document.cookie = `idioma=${idioma};path=/;max-age=${60*60*24*365}`;
+    document.cookie = `zona=${zona};path=/;max-age=${60*60*24*365}`;
+
+    // --- Mostrar resultados ---
+    document.getElementById('info').innerHTML = `
+      <p><strong>Idioma del navegador:</strong> ${idioma}</p>
+      <p><strong>Zona horaria detectada:</strong> ${zona}</p>
+      <p><strong>Cookie guardadas:</strong> ${document.cookie}</p>
+    `;
+  </script>
+</body>
+</html>
