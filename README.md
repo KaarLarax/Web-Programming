@@ -4,7 +4,13 @@ Repositorio académico con prácticas, tareas y ejercicios de la materia de Prog
 
 ## Sitio en GitHub Pages
 
-El archivo `index.html` de la raíz funciona como portada del repositorio. GitHub Pages lo puede servir directamente si configuras el sitio con una de estas opciones:
+Página publicada: <https://kaarlarax.github.io/Web-Programming/>
+
+El sitio muestra una portada tipo galería sobre lo aprendido durante el curso: estructura con HTML, composición visual con CSS, interacción con JavaScript, uso de DOM/BOM, componentes con Bootstrap y una sección de referencia para prácticas PHP. También incluye un archivo navegable con enlaces a las prácticas, tareas y ejercicios por parcial.
+
+El archivo `index.html` de la raíz funciona como portada del repositorio. GitHub Pages lo sirve automáticamente desde la rama configurada del proyecto.
+
+Para configurar o revisar GitHub Pages:
 
 1. En GitHub, entra a `Settings`.
 2. Abre `Pages`.
