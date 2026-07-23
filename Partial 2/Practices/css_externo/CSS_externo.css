@@ -1,0 +1,13 @@
+a:link, a:visited {
+    background-color: #FF8000;
+    color: white;
+    /* Space around content */
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    /* Wraps the box of the text */
+    display: inline-block; /* Encierra el objeto y no permite el flujo de otros objetos */
+}
+a:hover, a:active { /* Cuando se pasa el mouse por encima  y cuando se da click */ 
+    background-color: black;
+}

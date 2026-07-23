@@ -1,0 +1,53 @@
+
+.general-rules, .duration, .champions {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	width: 60%;
+	margin: 30px auto;
+	padding: 20px;
+	text-align: center;
+}
+
+.general-rules ol {
+	text-align: left;
+	margin: 0 auto;
+	display: inline-block;
+}
+
+.champions strong {
+	color: #1565c0;
+}
+
+body {
+	background: #e3f2fd;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+	color: #1565c0;
+	margin-top: 30px;
+}
+
+.intro, .rules {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+	width: 60%;
+	margin: 30px auto;
+	padding: 20px;
+}
+
+h2 {
+	color: #1976d2;
+	text-align: center;
+}
+
+ol {
+	font-size: 18px;
+	color: #333;
+	padding-left: 30px;
+}

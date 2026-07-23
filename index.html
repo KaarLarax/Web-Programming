@@ -3,319 +3,513 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Prácticas de Web Programming</title>
+        <title>Web Programming | LHCA</title>
         <style>
+            :root {
+                --bg: #f5f7fb;
+                --surface: #ffffff;
+                --ink: #18212f;
+                --muted: #5d6878;
+                --line: #dbe2ec;
+                --accent: #2563eb;
+                --accent-dark: #1d4ed8;
+                --ok: #15803d;
+                --warn: #b45309;
+                --radius: 8px;
+                --shadow: 0 18px 50px rgba(24, 33, 47, 0.08);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
             body {
-                font-family: Arial, sans-serif;
-                background: #f8f8f8;
                 margin: 0;
-                padding: 0;
+                color: var(--ink);
+                background: var(--bg);
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 1.6;
             }
+
+            header {
+                background: var(--surface);
+                border-bottom: 1px solid var(--line);
+            }
+
+            .wrap {
+                width: min(1120px, calc(100% - 32px));
+                margin: 0 auto;
+            }
+
+            .hero {
+                display: grid;
+                gap: 18px;
+                padding: 56px 0 40px;
+            }
+
+            h1,
+            h2,
+            h3,
+            p {
+                margin-top: 0;
+            }
+
             h1 {
-                background: #2d3e50;
-                color: #fff;
-                margin: 0;
-                padding: 1rem;
+                max-width: 760px;
+                margin-bottom: 0;
+                font-size: clamp(2rem, 5vw, 4rem);
+                line-height: 1.05;
             }
-            h2 {
-                color: #2d3e50;
-                margin-top: 2rem;
+
+            .intro {
+                max-width: 720px;
+                margin-bottom: 0;
+                color: var(--muted);
+                font-size: 1.08rem;
             }
-            ul {
-                list-style: none;
-                padding-left: 1rem;
+
+            .actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 8px;
             }
-            li {
-                margin-bottom: 0.5rem;
-            }
-            a {
-                color: #1a73e8;
+
+            .button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 44px;
+                padding: 0 16px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--surface);
+                color: var(--ink);
+                font-weight: 700;
                 text-decoration: none;
             }
-            a:hover {
-                text-decoration: underline;
+
+            .button.primary {
+                border-color: var(--accent);
+                background: var(--accent);
+                color: #ffffff;
             }
-            .carpeta {
-                margin-bottom: 1.5rem;
+
+            .button:hover,
+            .button:focus-visible {
+                border-color: var(--accent-dark);
+                color: var(--accent-dark);
+            }
+
+            .button.primary:hover,
+            .button.primary:focus-visible {
+                background: var(--accent-dark);
+                color: #ffffff;
+            }
+
+            main {
+                padding: 34px 0 56px;
+            }
+
+            .summary {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 14px;
+                margin-bottom: 34px;
+            }
+
+            .metric,
+            .note,
+            .section {
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--surface);
+                box-shadow: var(--shadow);
+            }
+
+            .metric {
+                padding: 18px;
+            }
+
+            .metric strong {
+                display: block;
+                font-size: 1.8rem;
+                line-height: 1;
+            }
+
+            .metric span {
+                color: var(--muted);
+                font-size: 0.93rem;
+            }
+
+            .note {
+                margin-bottom: 28px;
+                padding: 18px;
+                border-left: 4px solid var(--warn);
+                box-shadow: none;
+            }
+
+            .note p {
+                margin-bottom: 0;
+                color: var(--muted);
+            }
+
+            .toc {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .toc a {
+                padding: 8px 12px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                background: var(--surface);
+                color: var(--ink);
+                font-size: 0.94rem;
+                text-decoration: none;
+            }
+
+            .toc a:hover,
+            .toc a:focus-visible {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+            .sections {
+                display: grid;
+                gap: 22px;
+            }
+
+            .section {
+                padding: 24px;
+            }
+
+            .section h2 {
+                margin-bottom: 6px;
+                font-size: 1.55rem;
+            }
+
+            .section > p {
+                margin-bottom: 20px;
+                color: var(--muted);
+            }
+
+            .group {
+                margin-top: 18px;
+            }
+
+            .group h3 {
+                margin-bottom: 10px;
+                color: var(--muted);
+                font-size: 0.9rem;
+                letter-spacing: 0;
+                text-transform: uppercase;
+            }
+
+            .links {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+                gap: 10px;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+
+            .links a {
+                display: flex;
+                min-height: 48px;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                padding: 11px 13px;
+                border: 1px solid var(--line);
+                border-radius: var(--radius);
+                color: var(--ink);
+                text-decoration: none;
+                background: #fbfcff;
+                overflow-wrap: anywhere;
+            }
+
+            .links a::after {
+                content: "Abrir";
+                flex: 0 0 auto;
+                color: var(--accent);
+                font-size: 0.82rem;
+                font-weight: 700;
+            }
+
+            .links a:hover,
+            .links a:focus-visible {
+                border-color: var(--accent);
+                color: var(--accent-dark);
+            }
+
+            .tag {
+                display: inline-flex;
+                align-items: center;
+                margin-left: 8px;
+                padding: 2px 7px;
+                border-radius: 999px;
+                color: #ffffff;
+                background: var(--ok);
+                font-size: 0.72rem;
+                font-weight: 700;
+                vertical-align: middle;
+            }
+
+            footer {
+                padding: 24px 0 34px;
+                color: var(--muted);
+                text-align: center;
+            }
+
+            @media (max-width: 760px) {
+                .summary {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .section {
+                    padding: 18px;
+                }
+            }
+
+            @media (max-width: 520px) {
+                .summary,
+                .links {
+                    grid-template-columns: 1fr;
+                }
             }
         </style>
     </head>
     <body>
-        <h1>Prácticas de Web Programming</h1>
-        <h2>Partial 1</h2>
-        <div class="carpeta">
-            <strong>Practices</strong>
-            <ul>
-                <li>
-                    <a
-                        href="./Partial%201/Practices/myfirstpage.html"
-                        target="_blank"
-                        >myfirstpage.html</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="./Partial%201/Practices/newline.html"
-                        target="_blank"
-                        >newline.html</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="./Partial%201/Practices/othertags.html"
-                        target="_blank"
-                        >othertags.html</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="./Partial%201/Practices/Sub&super.html"
-                        target="_blank"
-                        >Sub&super.html</a
-                    >
-                </li>
-                <li>
-                    <strong>GIF in tables</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%201/Practices/GIF%20in%20tables/tables.html"
-                                target="_blank"
-                                >tables.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>SPA web page</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%201/Practices/SPA%20web%20page/CALH_SPA.html"
-                                target="_blank"
-                                >CALH_SPA.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Tables</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%201/Practices/Tables/LHCA_ColSpan.html"
-                                target="_blank"
-                                >LHCA_ColSpan.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%201/Practices/Tables/LHCA_Phone_Book.html"
-                                target="_blank"
-                                >LHCA_Phone_Book.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%201/Practices/Tables/LHCA_RowSpan.html"
-                                target="_blank"
-                                >LHCA_RowSpan.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%201/Practices/Tables/LHCA_TiraDeMaterias.html"
-                                target="_blank"
-                                >LHCA_TiraDeMaterias.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Web Server web page</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%201/Practices/Web%20Server%20web%20page/WebServer.html"
-                                target="_blank"
-                                >WebServer.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <h2>Partial 2</h2>
-        <div class="carpeta">
-            <strong>Practices</strong>
-            <ul>
-                <li>
-                    <a
-                        href="./Partial%202/Practices/CALH_Cursors_Scroll.html"
-                        target="_blank"
-                        >CALH_Cursors_Scroll.html</a
-                    >
-                </li>
-                <li>
-                    <a href="./Partial%202/Practices/capas.html" target="_blank"
-                        >capas.html</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="./Partial%202/Practices/cursors.html"
-                        target="_blank"
-                        >cursors.html</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="./Partial%202/Practices/multicolumn.html"
-                        target="_blank"
-                        >multicolumn.html</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="./Partial%202/Practices/Pizarnik&julio.html"
-                        target="_blank"
-                        >Pizarnik&julio.html</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="./Partial%202/Practices/scrollbars.html"
-                        target="_blank"
-                        >scrollbars.html</a
-                    >
-                </li>
-                <li>
-                    <strong>CSS_Externo</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/CSS_Externo/CSS_Externo.html"
-                                target="_blank"
-                                >CSS_Externo.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Gradients</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Gradients/conicalGradient.html"
-                                target="_blank"
-                                >conicalGradient.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Gradients/gradientText.html"
-                                target="_blank"
-                                >gradientText.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Gradients/LHCA_GRADIENTS_JAKE_GILLINHAAL.html"
-                                target="_blank"
-                                >LHCA_GRADIENTS_JAKE_GILLINHAAL.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Gradients/linearGradient.html"
-                                target="_blank"
-                                >linearGradient.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Gradients/radialGradient.html"
-                                target="_blank"
-                                >radialGradient.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>ObjectFitObjectPosition</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/ObjectFitObjectPosition/LHCA_OBJECT_FIT_POSITION_AKEBIA.html"
-                                target="_blank"
-                                >LHCA_OBJECT_FIT_POSITION_AKEBIA.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/ObjectFitObjectPosition/practice1.html"
-                                target="_blank"
-                                >practice1.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Pseudo-Elements_Class</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Pseudo-Elements_Class/pseudo-class.html"
-                                target="_blank"
-                                >pseudo-class.html</a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Pseudo-Elements_Class/pseudo-elements.html"
-                                target="_blank"
-                                >pseudo-elements.html</a
-                            >
-                        </li>
-                        <li>
-                            <strong>Orangutan</strong>
-                            <ul>
-                                <li>
-                                    <a
-                                        href="./Partial%202/Practices/Pseudo-Elements_Class/Orangutan/orangutan.html"
-                                        target="_blank"
-                                        >orangutan.html</a
-                                    >
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Solecito capas</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Solecito%20capas/capas_salchichita.html"
-                                target="_blank"
-                                >capas_salchichita.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Sport Volleyball Css html</strong>
-                    <ul>
-                        <li>
-                            <a
-                                href="./Partial%202/Practices/Sport%20Volleyball%20Css%20html/Volleyball.html"
-                                target="_blank"
-                                >Volleyball.html</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <header>
+            <div class="wrap hero">
+                <h1>Repositorio de Programación Web</h1>
+                <p class="intro">
+                    Documentación y acceso rápido a las prácticas, tareas y
+                    ejercicios del curso. Esta página funciona como portada
+                    para GitHub Pages usando el archivo <strong>index.html</strong>
+                    de la raíz del repositorio.
+                </p>
+                <nav class="actions" aria-label="Acciones principales">
+                    <a class="button primary" href="#parcial-1">Ver prácticas</a>
+                    <a class="button" href="#publicacion">Publicar en GitHub Pages</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="wrap">
+            <section class="summary" aria-label="Resumen del repositorio">
+                <div class="metric">
+                    <strong>3</strong>
+                    <span>Parciales documentados</span>
+                </div>
+                <div class="metric">
+                    <strong>HTML</strong>
+                    <span>Prácticas listas para GitHub Pages</span>
+                </div>
+                <div class="metric">
+                    <strong>CSS</strong>
+                    <span>Diseño, layout y efectos visuales</span>
+                </div>
+                <div class="metric">
+                    <strong>JS</strong>
+                    <span>DOM, BOM, eventos y lógica básica</span>
+                </div>
+            </section>
+
+            <section class="note" aria-label="Nota sobre GitHub Pages">
+                <p>
+                    GitHub Pages sirve archivos estáticos como HTML, CSS, JS,
+                    imágenes, PDF y documentos. Los archivos PHP se enlazan como
+                    referencia, pero necesitan un servidor local o hosting con
+                    PHP para ejecutarse.
+                </p>
+            </section>
+
+            <nav class="toc" aria-label="Navegación por parciales">
+                <a href="#parcial-1">Parcial 1</a>
+                <a href="#parcial-2">Parcial 2</a>
+                <a href="#parcial-3">Parcial 3</a>
+                <a href="#php">PHP</a>
+            </nav>
+
+            <div class="sections">
+                <section class="section" id="parcial-1">
+                    <h2>Parcial 1</h2>
+                    <p>
+                        Fundamentos de HTML, estructura de páginas, tablas y
+                        conceptos iniciales de sitios web.
+                    </p>
+
+                    <div class="group">
+                        <h3>Prácticas HTML</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%201/Practices/myfirstpage.html">Mi primera página</a></li>
+                            <li><a href="./Partial%201/Practices/newline.html">Saltos de línea</a></li>
+                            <li><a href="./Partial%201/Practices/othertags.html">Otras etiquetas</a></li>
+                            <li><a href="./Partial%201/Practices/Sub%26super.html">Subíndices y superíndices</a></li>
+                            <li><a href="./Partial%201/Practices/GIF%20in%20tables/tables.html">GIF en tablas</a></li>
+                            <li><a href="./Partial%201/Practices/Tables/LHCA_ColSpan.html">Tabla con colspan</a></li>
+                            <li><a href="./Partial%201/Practices/Tables/LHCA_RowSpan.html">Tabla con rowspan</a></li>
+                            <li><a href="./Partial%201/Practices/Tables/LHCA_Phone_Book.html">Directorio telefónico</a></li>
+                            <li><a href="./Partial%201/Practices/Tables/LHCA_TiraDeMaterias.html">Tira de materias</a></li>
+                            <li><a href="./Partial%201/Practices/spa%20web%20page/CALH_SPA.html">Página sobre SPA</a></li>
+                            <li><a href="./Partial%201/Practices/Web%20Server%20web%20page/WebServer.html">Página sobre web server</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="group">
+                        <h3>Tareas</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%201/Homework/LHCA_INTERNET_WWW.pdf">Internet y WWW</a></li>
+                            <li><a href="./Partial%201/Homework/LHCA__STATUS_CODES.pdf">HTTP status codes</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section" id="parcial-2">
+                    <h2>Parcial 2</h2>
+                    <p>
+                        CSS, layouts, efectos visuales, responsive basics y
+                        primeros ejercicios de JavaScript.
+                    </p>
+
+                    <div class="group">
+                        <h3>CSS y layout</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%202/Practices/css_externo/CSS_externo.html">CSS externo</a></li>
+                            <li><a href="./Partial%202/Practices/css_externo/Volleyball.html">Página de volleyball</a></li>
+                            <li><a href="./Partial%202/Practices/flexbox/LHCA_FLEXBOX.html">Flexbox</a></li>
+                            <li><a href="./Partial%202/Practices/gridview/LHCA_gridview.html">Grid view</a></li>
+                            <li><a href="./Partial%202/Practices/navigationbar/LACH_navigationbar.html">Navigation bar</a></li>
+                            <li><a href="./Partial%202/Practices/pagination/LACH_Pagination.html">Pagination</a></li>
+                            <li><a href="./Partial%202/Practices/multicolumn/multicolumn.html">Multicolumn</a></li>
+                            <li><a href="./Partial%202/Practices/multicolumn/LHCA_MULTICOLUMN_PIZZARNIK_CORTAZAR.html">Pizarnik y Cortázar</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="group">
+                        <h3>Efectos visuales</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%202/Practices/gradients/linearGradient.html">Linear gradient</a></li>
+                            <li><a href="./Partial%202/Practices/gradients/radialGradient.html">Radial gradient</a></li>
+                            <li><a href="./Partial%202/Practices/gradients/conicalGradient.html">Conical gradient</a></li>
+                            <li><a href="./Partial%202/Practices/gradients/gradientText.html">Gradient text</a></li>
+                            <li><a href="./Partial%202/Practices/gradients/LHCA_GRADIENTS_JAKE_GILLINHAAL.html">Gradients Jake Gyllenhaal</a></li>
+                            <li><a href="./Partial%202/Practices/masking/LHCA_masking.html">Masking</a></li>
+                            <li><a href="./Partial%202/Practices/object-fit-position/object_fit_position.html">Object fit position</a></li>
+                            <li><a href="./Partial%202/Practices/object-fit-position/LHCA_OBJECT_FIT_POSITION_AKEBIA.html">Object fit Akebia</a></li>
+                            <li><a href="./Partial%202/Practices/3d/LHCA_3D.html">Transformaciones 3D</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="group">
+                        <h3>Interacción y estilos</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%202/Practices/buttoms/LHCA_buttoms.html">Buttons</a></li>
+                            <li><a href="./Partial%202/Practices/cursors/cursors.html">Cursors</a></li>
+                            <li><a href="./Partial%202/Practices/scrollbars/scrollbars.html">Scrollbars</a></li>
+                            <li><a href="./Partial%202/Practices/scrollbars/LHCA_Cursors_Scroll_REGULAR_SHOW.html">Cursors y scroll regular</a></li>
+                            <li><a href="./Partial%202/Practices/pseudo-elements-class/pseudo-class.html">Pseudo classes</a></li>
+                            <li><a href="./Partial%202/Practices/pseudo-elements-class/pseudo-elements.html">Pseudo elements</a></li>
+                            <li><a href="./Partial%202/Practices/pseudo-elements-class/Orangutan/orangutan.html">Orangutan</a></li>
+                            <li><a href="./Partial%202/Practices/layers/capas.html">Capas</a></li>
+                            <li><a href="./Partial%202/Practices/layers/solecito-capas/capas_salchichita.html">Capas solecito</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="group">
+                        <h3>JavaScript</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%202/Practices/JS/conditional%20statements/if_then_else_js.html">If, then, else</a></li>
+                            <li><a href="./Partial%202/Practices/JS/conditional%20statements/switch_case.html">Switch case</a></li>
+                            <li><a href="./Partial%202/Practices/JS/loop%20statements/for/dayofweek.html">For loop: day of week</a></li>
+                            <li><a href="./Partial%202/Practices/JS/loop%20statements/while_dowhile/LHCA_whiledowhile.html">While y do while</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="group">
+                        <h3>Evaluación</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%202/exam/combustible.html">Examen: combustible</a></li>
+                            <li><a href="./Partial%202/homework/LHCA_Ternary_Events.pdf">Ternary events</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section" id="parcial-3">
+                    <h2>Parcial 3</h2>
+                    <p>
+                        Bootstrap, DOM, BOM, cookies, formularios y prácticas
+                        integradoras con JavaScript.
+                    </p>
+
+                    <div class="group">
+                        <h3>Bootstrap</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%203/Homework/Bootstrap/index.html">Bootstrap general</a></li>
+                            <li><a href="./Partial%203/Homework/Bootstrap/CDN/index.html">Bootstrap con CDN</a></li>
+                            <li><a href="./Partial%203/Homework/Bootstrap/local/index.html">Bootstrap local</a></li>
+                            <li><a href="./Partial%203/Homework/Bootstrap/without%20bootstrap/index.html">Sin Bootstrap</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="group">
+                        <h3>JavaScript en navegador</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%203/Practices/Animation%20DOM/LHCA_DOM_Ball.html">DOM ball animation</a></li>
+                            <li><a href="./Partial%203/Practices/Animation%20DOM/LHCA_DOM_Square.html">DOM square animation</a></li>
+                            <li><a href="./Partial%203/Practices/Animation%20DOM/square.html">Square</a></li>
+                            <li><a href="./Partial%203/Practices/BOM/LHCA_BOM_Cookie.html">BOM cookie</a></li>
+                            <li><a href="./Partial%203/Practices/BOM/LHCA_BOM_Retrieve.html">BOM retrieve</a></li>
+                            <li><a href="./Partial%203/Practices/testPersonalidad/TestPersonalidad.html">Test de personalidad</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section" id="php">
+                    <h2>Prácticas PHP</h2>
+                    <p>
+                        Estos enlaces son parte del repositorio, pero GitHub
+                        Pages no ejecuta PHP. Para probarlos usa un servidor
+                        local como XAMPP, Laragon, MAMP o el servidor integrado
+                        de PHP.
+                    </p>
+
+                    <div class="group">
+                        <h3>Archivos PHP</h3>
+                        <ul class="links">
+                            <li><a href="./Partial%203/Practices/PHP/LHCA_figuras.php">Figuras en PHP <span class="tag">PHP</span></a></li>
+                            <li><a href="./Partial%203/Practices/testPersonalidad/mes.php">Mes en PHP <span class="tag">PHP</span></a></li>
+                            <li><a href="./Partial%203/Practices/Client%20Web%20system/index.php">Client Web system <span class="tag">PHP</span></a></li>
+                            <li><a href="./Partial%203/Practices/Client%20Web%20system/c-crud.php">Create CRUD <span class="tag">PHP</span></a></li>
+                            <li><a href="./Partial%203/Practices/Client%20Web%20system/r-crud-t1.php">Read CRUD <span class="tag">PHP</span></a></li>
+                            <li><a href="./Partial%203/Practices/Client%20Web%20system/u-crud.php">Update CRUD <span class="tag">PHP</span></a></li>
+                            <li><a href="./Partial%203/Practices/Client%20Web%20system/d-crud.php">Delete CRUD <span class="tag">PHP</span></a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section" id="publicacion">
+                    <h2>Publicación</h2>
+                    <p>
+                        Para montar este repositorio en GitHub Pages, configura
+                        la publicación desde la rama principal y selecciona la
+                        carpeta <strong>/root</strong>. Al estar en la raíz,
+                        GitHub Pages servirá automáticamente este archivo
+                        <strong>index.html</strong> como página inicial.
+                    </p>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <div class="wrap">
+                Repositorio académico de Programación Web.
+            </div>
+        </footer>
     </body>
 </html>
