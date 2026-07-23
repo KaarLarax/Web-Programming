@@ -3,48 +3,143 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Web Programming | LHCA</title>
+        <title>Repositorio de Programación Web | LHCA</title>
         <style>
             :root {
-                --bg: #f5f7fb;
-                --surface: #ffffff;
-                --ink: #18212f;
-                --muted: #5d6878;
-                --line: #dbe2ec;
-                --accent: #2563eb;
-                --accent-dark: #1d4ed8;
-                --ok: #15803d;
-                --warn: #b45309;
-                --radius: 8px;
-                --shadow: 0 18px 50px rgba(24, 33, 47, 0.08);
+                --paper: #f7f5ef;
+                --paper-2: #ede9df;
+                --ink: #111111;
+                --muted: #5b564d;
+                --line: #161616;
+                --soft-line: rgba(17, 17, 17, 0.18);
+                --blue: #073ee8;
+                --blue-soft: rgba(7, 62, 232, 0.1);
+                --white: #fffdf8;
+                --shadow: 0 22px 55px rgba(20, 16, 10, 0.16);
             }
 
             * {
                 box-sizing: border-box;
             }
 
+            html {
+                scroll-behavior: smooth;
+            }
+
             body {
                 margin: 0;
                 color: var(--ink);
-                background: var(--bg);
-                font-family: Arial, Helvetica, sans-serif;
-                line-height: 1.6;
+                background:
+                    radial-gradient(circle at 18% 8%, rgba(7, 62, 232, 0.08), transparent 18rem),
+                    linear-gradient(90deg, rgba(17, 17, 17, 0.035) 1px, transparent 1px),
+                    linear-gradient(0deg, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
+                    var(--paper);
+                background-size: auto, 54px 54px, 54px 54px, auto;
+                font-family: Georgia, "Times New Roman", serif;
+                line-height: 1.5;
             }
 
-            header {
-                background: var(--surface);
-                border-bottom: 1px solid var(--line);
+            a {
+                color: inherit;
             }
 
             .wrap {
-                width: min(1120px, calc(100% - 32px));
+                width: min(1180px, calc(100% - 36px));
                 margin: 0 auto;
+            }
+
+            .topbar {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                border-bottom: 2px solid var(--line);
+                background: rgba(247, 245, 239, 0.92);
+                backdrop-filter: blur(12px);
+            }
+
+            .topbar .wrap {
+                display: flex;
+                min-height: 68px;
+                align-items: center;
+                justify-content: space-between;
+                gap: 22px;
+            }
+
+            .brand,
+            .menu,
+            .label,
+            .button,
+            .tag,
+            .project-link span,
+            .tiny {
+                font-family: Arial, Helvetica, sans-serif;
+                letter-spacing: 0;
+            }
+
+            .brand {
+                font-size: 0.78rem;
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 18px;
+                font-size: 0.78rem;
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+
+            .menu a {
+                padding: 8px 0;
+                color: var(--muted);
+                text-decoration: none;
+            }
+
+            .menu a:hover,
+            .menu a:focus-visible {
+                color: var(--blue);
             }
 
             .hero {
                 display: grid;
-                gap: 18px;
-                padding: 56px 0 40px;
+                grid-template-columns: 0.12fr 0.9fr 0.8fr;
+                gap: 34px;
+                min-height: calc(100vh - 68px);
+                padding: 58px 0 38px;
+                border-bottom: 2px solid var(--line);
+            }
+
+            .rail {
+                display: grid;
+                align-content: start;
+                gap: 28px;
+                padding-top: 10px;
+                border-right: 1px solid var(--line);
+            }
+
+            .rail strong {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 2rem;
+                line-height: 1;
+                color: var(--blue);
+            }
+
+            .rail span {
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                color: var(--muted);
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 0.7rem;
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+
+            .hero-copy {
+                align-self: center;
+                padding-bottom: 34px;
             }
 
             h1,
@@ -56,459 +151,672 @@
 
             h1 {
                 max-width: 760px;
-                margin-bottom: 0;
-                font-size: clamp(2rem, 5vw, 4rem);
-                line-height: 1.05;
+                margin-bottom: 22px;
+                font-size: clamp(3.2rem, 8vw, 6.7rem);
+                line-height: 0.92;
+                font-weight: 700;
+                letter-spacing: -0.04em;
+            }
+
+            .blue-stroke {
+                display: block;
+                width: min(390px, 72vw);
+                height: 9px;
+                margin: 0 0 22px;
+                background: var(--blue);
+                transform: skewX(-18deg);
             }
 
             .intro {
-                max-width: 720px;
-                margin-bottom: 0;
+                max-width: 660px;
+                margin-bottom: 18px;
+                font-size: clamp(1.05rem, 2vw, 1.28rem);
+                color: #302c26;
+            }
+
+            .concept-list {
+                max-width: 690px;
+                margin: 0 0 30px;
                 color: var(--muted);
-                font-size: 1.08rem;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 0.98rem;
+            }
+
+            .concept-list b {
+                color: var(--blue);
             }
 
             .actions {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 12px;
-                margin-top: 8px;
             }
 
             .button {
                 display: inline-flex;
+                min-height: 45px;
                 align-items: center;
                 justify-content: center;
-                min-height: 44px;
-                padding: 0 16px;
+                padding: 0 18px;
                 border: 1px solid var(--line);
-                border-radius: var(--radius);
-                background: var(--surface);
+                background: transparent;
                 color: var(--ink);
-                font-weight: 700;
+                font-size: 0.78rem;
+                font-weight: 900;
                 text-decoration: none;
+                text-transform: uppercase;
             }
 
             .button.primary {
-                border-color: var(--accent);
-                background: var(--accent);
-                color: #ffffff;
+                border-color: var(--blue);
+                color: var(--blue);
             }
 
             .button:hover,
             .button:focus-visible {
-                border-color: var(--accent-dark);
-                color: var(--accent-dark);
+                background: var(--blue);
+                color: var(--white);
             }
 
-            .button.primary:hover,
-            .button.primary:focus-visible {
-                background: var(--accent-dark);
-                color: #ffffff;
+            .hero-installation {
+                position: relative;
+                display: grid;
+                align-content: center;
+                gap: 18px;
+                min-height: 520px;
+            }
+
+            .frame {
+                width: min(330px, 86%);
+                margin-left: 8%;
+                padding: 22px;
+                border: 14px solid #161616;
+                background: var(--white);
+                box-shadow: var(--shadow);
+                transform: rotate(-1deg);
+            }
+
+            .frame pre {
+                margin: 0;
+                color: #151515;
+                font: 700 1rem/1.45 "Courier New", monospace;
+                white-space: pre-wrap;
+            }
+
+            .paper-note {
+                justify-self: end;
+                width: min(360px, 86%);
+                padding: 22px;
+                border: 1px solid var(--soft-line);
+                background: #fffaf0;
+                box-shadow: 0 16px 35px rgba(20, 16, 10, 0.12);
+                transform: rotate(1.5deg);
+            }
+
+            .paper-note code {
+                color: var(--blue);
+                font: 700 0.86rem/1.45 "Courier New", monospace;
+            }
+
+            .swatches {
+                display: flex;
+                gap: 10px;
+                margin-top: 12px;
+            }
+
+            .swatches i {
+                width: 46px;
+                height: 46px;
+                border: 1px solid var(--soft-line);
+            }
+
+            .swatches i:nth-child(1) {
+                background: var(--white);
+            }
+
+            .swatches i:nth-child(2) {
+                background: var(--paper-2);
+            }
+
+            .swatches i:nth-child(3) {
+                background: var(--ink);
+            }
+
+            .swatches i:nth-child(4) {
+                background: var(--blue);
             }
 
             main {
-                padding: 34px 0 56px;
+                padding-bottom: 58px;
             }
 
-            .summary {
-                display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 14px;
-                margin-bottom: 34px;
+            .gallery-title {
+                display: flex;
+                align-items: end;
+                justify-content: space-between;
+                gap: 20px;
+                padding: 34px 0 18px;
+                border-bottom: 2px solid var(--line);
             }
 
-            .metric,
-            .note,
-            .section {
-                border: 1px solid var(--line);
-                border-radius: var(--radius);
-                background: var(--surface);
-                box-shadow: var(--shadow);
-            }
-
-            .metric {
-                padding: 18px;
-            }
-
-            .metric strong {
-                display: block;
-                font-size: 1.8rem;
+            .gallery-title h2 {
+                margin-bottom: 0;
+                font-size: clamp(1.8rem, 4vw, 3.2rem);
                 line-height: 1;
             }
 
-            .metric span {
-                color: var(--muted);
-                font-size: 0.93rem;
-            }
-
-            .note {
-                margin-bottom: 28px;
-                padding: 18px;
-                border-left: 4px solid var(--warn);
-                box-shadow: none;
-            }
-
-            .note p {
-                margin-bottom: 0;
-                color: var(--muted);
-            }
-
-            .toc {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                margin-bottom: 30px;
-            }
-
-            .toc a {
-                padding: 8px 12px;
-                border: 1px solid var(--line);
-                border-radius: var(--radius);
-                background: var(--surface);
-                color: var(--ink);
-                font-size: 0.94rem;
-                text-decoration: none;
-            }
-
-            .toc a:hover,
-            .toc a:focus-visible {
-                border-color: var(--accent);
-                color: var(--accent);
-            }
-
-            .sections {
-                display: grid;
-                gap: 22px;
-            }
-
-            .section {
-                padding: 24px;
-            }
-
-            .section h2 {
-                margin-bottom: 6px;
-                font-size: 1.55rem;
-            }
-
-            .section > p {
-                margin-bottom: 20px;
-                color: var(--muted);
-            }
-
-            .group {
-                margin-top: 18px;
-            }
-
-            .group h3 {
-                margin-bottom: 10px;
-                color: var(--muted);
-                font-size: 0.9rem;
-                letter-spacing: 0;
+            .label {
+                color: var(--blue);
+                font-size: 0.78rem;
+                font-weight: 900;
                 text-transform: uppercase;
             }
 
-            .links {
+            .learning-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                border-bottom: 2px solid var(--line);
+            }
+
+            .learning {
+                display: grid;
+                gap: 18px;
+                padding: 28px;
+                border-right: 1px solid var(--line);
+                min-height: 430px;
+            }
+
+            .learning:last-child {
+                border-right: 0;
+            }
+
+            .number {
+                color: var(--blue);
+                font-size: 3.4rem;
+                line-height: 0.9;
+                font-weight: 700;
+            }
+
+            .learning h3 {
+                margin-bottom: 0;
+                font-size: clamp(1.35rem, 2.6vw, 2rem);
+                line-height: 1.05;
+            }
+
+            .learning p {
+                margin-bottom: 0;
+                color: #332f2a;
+            }
+
+            .sketch {
+                min-height: 140px;
+                border: 1px solid var(--soft-line);
+                background:
+                    linear-gradient(90deg, transparent 48%, rgba(7, 62, 232, 0.18) 48% 52%, transparent 52%),
+                    repeating-linear-gradient(0deg, rgba(17, 17, 17, 0.08) 0 1px, transparent 1px 25px),
+                    #fbf8ef;
+                padding: 18px;
+                color: var(--muted);
+                font: 700 0.82rem/1.5 "Courier New", monospace;
+            }
+
+            .learning ul {
+                margin: 0;
+                padding-left: 20px;
+                color: var(--muted);
+            }
+
+            .archive {
+                padding-top: 34px;
+            }
+
+            .archive-head {
+                display: grid;
+                grid-template-columns: 0.72fr 1fr;
+                gap: 28px;
+                margin-bottom: 22px;
+            }
+
+            .archive-head h2 {
+                margin-bottom: 0;
+                font-size: clamp(2rem, 5vw, 4rem);
+                line-height: 0.95;
+                letter-spacing: -0.03em;
+            }
+
+            .archive-head p {
+                color: var(--muted);
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .index-section {
+                display: grid;
+                grid-template-columns: 220px 1fr;
+                border-top: 1px solid var(--line);
+            }
+
+            .index-label {
+                padding: 20px 18px 20px 0;
+                border-right: 1px solid var(--line);
+            }
+
+            .index-label h3 {
+                margin-bottom: 8px;
+                font-size: 1.4rem;
+            }
+
+            .index-label p {
+                margin-bottom: 0;
+                color: var(--muted);
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 0.9rem;
+            }
+
+            .project-list {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-                gap: 10px;
-                padding: 0;
-                margin: 0;
-                list-style: none;
             }
 
-            .links a {
-                display: flex;
-                min-height: 48px;
-                align-items: center;
-                justify-content: space-between;
-                gap: 12px;
-                padding: 11px 13px;
-                border: 1px solid var(--line);
-                border-radius: var(--radius);
-                color: var(--ink);
+            .project-link {
+                display: grid;
+                gap: 8px;
+                min-height: 112px;
+                padding: 18px;
+                border-right: 1px solid var(--soft-line);
+                border-bottom: 1px solid var(--soft-line);
+                background: rgba(255, 253, 248, 0.34);
                 text-decoration: none;
-                background: #fbfcff;
-                overflow-wrap: anywhere;
             }
 
-            .links a::after {
-                content: "Abrir";
-                flex: 0 0 auto;
-                color: var(--accent);
+            .project-link:hover,
+            .project-link:focus-visible {
+                background: var(--blue-soft);
+                color: var(--blue);
+            }
+
+            .project-link span {
+                color: var(--blue);
+                font-size: 0.73rem;
+                font-weight: 900;
+                text-transform: uppercase;
+            }
+
+            .project-link strong {
+                font-size: 1.03rem;
+                line-height: 1.2;
+            }
+
+            .project-link small {
+                color: var(--muted);
+                font-family: Arial, Helvetica, sans-serif;
                 font-size: 0.82rem;
-                font-weight: 700;
             }
 
-            .links a:hover,
-            .links a:focus-visible {
-                border-color: var(--accent);
-                color: var(--accent-dark);
+            .notice {
+                display: grid;
+                grid-template-columns: 180px 1fr;
+                gap: 20px;
+                margin: 36px 0 0;
+                padding: 22px 0;
+                border-top: 2px solid var(--line);
+                border-bottom: 2px solid var(--line);
             }
 
-            .tag {
-                display: inline-flex;
-                align-items: center;
-                margin-left: 8px;
-                padding: 2px 7px;
-                border-radius: 999px;
-                color: #ffffff;
-                background: var(--ok);
-                font-size: 0.72rem;
-                font-weight: 700;
-                vertical-align: middle;
+            .notice p {
+                margin: 0;
+                color: #312d26;
             }
 
             footer {
-                padding: 24px 0 34px;
+                padding: 30px 0 44px;
                 color: var(--muted);
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 0.9rem;
                 text-align: center;
             }
 
-            @media (max-width: 760px) {
-                .summary {
-                    grid-template-columns: repeat(2, minmax(0, 1fr));
+            @media (max-width: 950px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                    min-height: auto;
                 }
 
-                .section {
-                    padding: 18px;
+                .rail {
+                    display: flex;
+                    align-items: center;
+                    border-right: 0;
+                    border-bottom: 1px solid var(--line);
+                    padding-bottom: 16px;
+                }
+
+                .rail span {
+                    writing-mode: initial;
+                    transform: none;
+                }
+
+                .hero-installation {
+                    min-height: auto;
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .frame,
+                .paper-note {
+                    width: 100%;
+                    margin-left: 0;
+                }
+
+                .learning-grid,
+                .archive-head,
+                .notice {
+                    grid-template-columns: 1fr;
+                }
+
+                .learning {
+                    border-right: 0;
+                    border-bottom: 1px solid var(--line);
+                }
+
+                .learning:last-child {
+                    border-bottom: 0;
                 }
             }
 
-            @media (max-width: 520px) {
-                .summary,
-                .links {
+            @media (max-width: 720px) {
+                .topbar .wrap,
+                .gallery-title {
+                    align-items: flex-start;
+                    flex-direction: column;
+                }
+
+                .menu {
+                    justify-content: flex-start;
+                    gap: 12px;
+                }
+
+                .hero {
+                    padding-top: 34px;
+                }
+
+                .hero-installation,
+                .index-section {
+                    grid-template-columns: 1fr;
+                }
+
+                .index-label {
+                    border-right: 0;
+                }
+
+                .project-list {
                     grid-template-columns: 1fr;
                 }
             }
         </style>
     </head>
     <body>
-        <header>
-            <div class="wrap hero">
-                <h1>Repositorio de Programación Web</h1>
-                <p class="intro">
-                    Documentación y acceso rápido a las prácticas, tareas y
-                    ejercicios del curso. Esta página funciona como portada
-                    para GitHub Pages usando el archivo <strong>index.html</strong>
-                    de la raíz del repositorio.
-                </p>
-                <nav class="actions" aria-label="Acciones principales">
-                    <a class="button primary" href="#parcial-1">Ver prácticas</a>
-                    <a class="button" href="#publicacion">Publicar en GitHub Pages</a>
+        <header class="topbar">
+            <div class="wrap">
+                <a class="brand" href="#">Portafolio · Web Programming</a>
+                <nav class="menu" aria-label="Navegación principal">
+                    <a href="#aprendizajes">Aprendizajes</a>
+                    <a href="#archivo">Archivo</a>
+                    <a href="#php">PHP</a>
+                    <a href="#pages">Pages</a>
                 </nav>
             </div>
         </header>
 
-        <main class="wrap">
-            <section class="summary" aria-label="Resumen del repositorio">
-                <div class="metric">
-                    <strong>3</strong>
-                    <span>Parciales documentados</span>
-                </div>
-                <div class="metric">
-                    <strong>HTML</strong>
-                    <span>Prácticas listas para GitHub Pages</span>
-                </div>
-                <div class="metric">
-                    <strong>CSS</strong>
-                    <span>Diseño, layout y efectos visuales</span>
-                </div>
-                <div class="metric">
-                    <strong>JS</strong>
-                    <span>DOM, BOM, eventos y lógica básica</span>
-                </div>
-            </section>
+        <section class="wrap hero">
+            <aside class="rail" aria-label="Datos de exhibición">
+                <strong>01</strong>
+                <span>Aprender</span>
+                <span>Construir</span>
+                <span>Publicar</span>
+            </aside>
 
-            <section class="note" aria-label="Nota sobre GitHub Pages">
-                <p>
-                    GitHub Pages sirve archivos estáticos como HTML, CSS, JS,
-                    imágenes, PDF y documentos. Los archivos PHP se enlazan como
-                    referencia, pero necesitan un servidor local o hosting con
-                    PHP para ejecutarse.
+            <div class="hero-copy">
+                <h1>Repositorio de Programación Web</h1>
+                <i class="blue-stroke" aria-hidden="true"></i>
+                <p class="intro">
+                    Este sitio no es solo una lista de archivos: es una pequeña
+                    exhibición de lo que fui aprendiendo al convertir etiquetas,
+                    estilos y scripts en páginas que existen en el navegador.
                 </p>
+                <p class="concept-list">
+                    <b>HTML</b> para ordenar ideas. <b>CSS</b> para darles
+                    composición. <b>JavaScript</b> para hacerlas responder.
+                    <b>DOM</b> y <b>BOM</b> para entender el navegador.
+                    <b>Bootstrap</b> para construir más rápido. <b>PHP</b> para
+                    conectar formularios y datos con el servidor.
+                </p>
+                <div class="actions">
+                    <a class="button primary" href="#aprendizajes">Ver aprendizajes</a>
+                    <a class="button" href="#archivo">Abrir archivo de prácticas</a>
+                </div>
+            </div>
+
+            <div class="hero-installation" aria-label="Instalación visual">
+                <div class="frame">
+                    <pre>&lt;h1&gt;
+APRENDER
+HACIENDO
+MEJOR.
+&lt;/h1&gt;</pre>
+                </div>
+                <div class="paper-note">
+                    <p class="label">Pieza central</p>
+                    <code>
+                        const curso = ["estructura", "estilo", "interacción",
+                        "servidor"];
+                    </code>
+                    <div class="swatches" aria-hidden="true">
+                        <i></i><i></i><i></i><i></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="wrap">
+            <section id="aprendizajes" aria-labelledby="aprendizajes-title">
+                <div class="gallery-title">
+                    <h2 id="aprendizajes-title">Aprendizajes como piezas</h2>
+                    <p class="label">Tres parciales · una evolución</p>
+                </div>
+
+                <div class="learning-grid">
+                    <article class="learning">
+                        <span class="number">01</span>
+                        <div>
+                            <p class="label">Parcial 1</p>
+                            <h3>Estructura y semántica</h3>
+                        </div>
+                        <p>
+                            Aprendí a construir la base de una página: usar
+                            etiquetas con intención, organizar contenido,
+                            trabajar tablas y empezar a pensar en la web como
+                            documentos enlazados.
+                        </p>
+                        <div class="sketch" aria-hidden="true">
+                            &lt;table&gt;<br />
+                            &nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;contenido&lt;/td&gt;&lt;/tr&gt;<br />
+                            &lt;/table&gt;
+                        </div>
+                        <ul>
+                            <li>HTML básico y estructura</li>
+                            <li>Tablas, enlaces y recursos</li>
+                            <li>Conceptos de internet y servidores web</li>
+                        </ul>
+                        <a class="button" href="#parcial-1">Ver piezas del parcial 1</a>
+                    </article>
+
+                    <article class="learning">
+                        <span class="number">02</span>
+                        <div>
+                            <p class="label">Parcial 2</p>
+                            <h3>Estilo, composición e interacción</h3>
+                        </div>
+                        <p>
+                            Pasé de escribir contenido a diseñar experiencias:
+                            color, capas, gradientes, flexbox, grid y los
+                            primeros programas con decisiones, ciclos y eventos.
+                        </p>
+                        <div class="sketch" aria-hidden="true">
+                            .layout {<br />
+                            &nbsp;&nbsp;display: grid;<br />
+                            &nbsp;&nbsp;gap: 1rem;<br />
+                            }
+                        </div>
+                        <ul>
+                            <li>CSS externo y diseño responsive</li>
+                            <li>Flexbox, grid, capas y efectos visuales</li>
+                            <li>JavaScript con condicionales y ciclos</li>
+                        </ul>
+                        <a class="button" href="#parcial-2">Ver piezas del parcial 2</a>
+                    </article>
+
+                    <article class="learning">
+                        <span class="number">03</span>
+                        <div>
+                            <p class="label">Parcial 3</p>
+                            <h3>Navegador, componentes y servidor</h3>
+                        </div>
+                        <p>
+                            Exploré el comportamiento del navegador con DOM y
+                            BOM, practiqué interfaces con Bootstrap y conecté
+                            formularios con PHP para entender el lado del servidor.
+                        </p>
+                        <div class="sketch" aria-hidden="true">
+                            window.document<br />
+                            &nbsp;&nbsp;.querySelector("#app")<br />
+                            &nbsp;&nbsp;.classList.add("activo");
+                        </div>
+                        <ul>
+                            <li>DOM, BOM, cookies y animación</li>
+                            <li>Bootstrap con CDN, local y sin framework</li>
+                            <li>PHP, formularios y CRUD</li>
+                        </ul>
+                        <a class="button" href="#parcial-3">Ver piezas del parcial 3</a>
+                    </article>
+                </div>
             </section>
 
-            <nav class="toc" aria-label="Navegación por parciales">
-                <a href="#parcial-1">Parcial 1</a>
-                <a href="#parcial-2">Parcial 2</a>
-                <a href="#parcial-3">Parcial 3</a>
-                <a href="#php">PHP</a>
-            </nav>
-
-            <div class="sections">
-                <section class="section" id="parcial-1">
-                    <h2>Parcial 1</h2>
+            <section class="archive" id="archivo" aria-labelledby="archivo-title">
+                <div class="archive-head">
+                    <h2 id="archivo-title">Archivo de prácticas</h2>
                     <p>
-                        Fundamentos de HTML, estructura de páginas, tablas y
-                        conceptos iniciales de sitios web.
+                        Cada enlace abre una práctica real del repositorio.
+                        El orden conserva la idea de recorrido: primero
+                        estructura, luego composición, después interacción y
+                        finalmente piezas que necesitan servidor.
                     </p>
+                </div>
 
-                    <div class="group">
-                        <h3>Prácticas HTML</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%201/Practices/myfirstpage.html">Mi primera página</a></li>
-                            <li><a href="./Partial%201/Practices/newline.html">Saltos de línea</a></li>
-                            <li><a href="./Partial%201/Practices/othertags.html">Otras etiquetas</a></li>
-                            <li><a href="./Partial%201/Practices/Sub%26super.html">Subíndices y superíndices</a></li>
-                            <li><a href="./Partial%201/Practices/GIF%20in%20tables/tables.html">GIF en tablas</a></li>
-                            <li><a href="./Partial%201/Practices/Tables/LHCA_ColSpan.html">Tabla con colspan</a></li>
-                            <li><a href="./Partial%201/Practices/Tables/LHCA_RowSpan.html">Tabla con rowspan</a></li>
-                            <li><a href="./Partial%201/Practices/Tables/LHCA_Phone_Book.html">Directorio telefónico</a></li>
-                            <li><a href="./Partial%201/Practices/Tables/LHCA_TiraDeMaterias.html">Tira de materias</a></li>
-                            <li><a href="./Partial%201/Practices/spa%20web%20page/CALH_SPA.html">Página sobre SPA</a></li>
-                            <li><a href="./Partial%201/Practices/Web%20Server%20web%20page/WebServer.html">Página sobre web server</a></li>
-                        </ul>
+                <section class="index-section" id="parcial-1">
+                    <div class="index-label">
+                        <p class="label">Sala 01</p>
+                        <h3>HTML y web</h3>
+                        <p>Primeras páginas, tablas y conceptos base.</p>
                     </div>
-
-                    <div class="group">
-                        <h3>Tareas</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%201/Homework/LHCA_INTERNET_WWW.pdf">Internet y WWW</a></li>
-                            <li><a href="./Partial%201/Homework/LHCA__STATUS_CODES.pdf">HTTP status codes</a></li>
-                        </ul>
+                    <div class="project-list">
+                        <a class="project-link" href="./Partial%201/Practices/myfirstpage.html"><span>HTML</span><strong>Mi primera página</strong><small>Estructura inicial de un documento web.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/newline.html"><span>HTML</span><strong>Saltos de línea</strong><small>Control básico del flujo de texto.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/othertags.html"><span>HTML</span><strong>Otras etiquetas</strong><small>Exploración de elementos semánticos.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/Sub%26super.html"><span>HTML</span><strong>Subíndices y superíndices</strong><small>Texto con significado visual y técnico.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/GIF%20in%20tables/tables.html"><span>Tablas</span><strong>GIF en tablas</strong><small>Composición con celdas y recursos.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/Tables/LHCA_ColSpan.html"><span>Tablas</span><strong>Colspan</strong><small>Celdas extendidas horizontalmente.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/Tables/LHCA_RowSpan.html"><span>Tablas</span><strong>Rowspan</strong><small>Celdas extendidas verticalmente.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/Tables/LHCA_Phone_Book.html"><span>Tablas</span><strong>Directorio telefónico</strong><small>Datos organizados en formato tabular.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/Tables/LHCA_TiraDeMaterias.html"><span>Tablas</span><strong>Tira de materias</strong><small>Información académica estructurada.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/spa%20web%20page/CALH_SPA.html"><span>Web</span><strong>Página sobre SPA</strong><small>Conceptos de aplicaciones de una página.</small></a>
+                        <a class="project-link" href="./Partial%201/Practices/Web%20Server%20web%20page/WebServer.html"><span>Web</span><strong>Web server</strong><small>Funcionamiento general de un servidor web.</small></a>
+                        <a class="project-link" href="./Partial%201/Homework/LHCA_INTERNET_WWW.pdf"><span>PDF</span><strong>Internet y WWW</strong><small>Investigación del primer parcial.</small></a>
+                        <a class="project-link" href="./Partial%201/Homework/LHCA__STATUS_CODES.pdf"><span>PDF</span><strong>HTTP status codes</strong><small>Códigos de respuesta HTTP.</small></a>
                     </div>
                 </section>
 
-                <section class="section" id="parcial-2">
-                    <h2>Parcial 2</h2>
-                    <p>
-                        CSS, layouts, efectos visuales, responsive basics y
-                        primeros ejercicios de JavaScript.
-                    </p>
-
-                    <div class="group">
-                        <h3>CSS y layout</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%202/Practices/css_externo/CSS_externo.html">CSS externo</a></li>
-                            <li><a href="./Partial%202/Practices/css_externo/Volleyball.html">Página de volleyball</a></li>
-                            <li><a href="./Partial%202/Practices/flexbox/LHCA_FLEXBOX.html">Flexbox</a></li>
-                            <li><a href="./Partial%202/Practices/gridview/LHCA_gridview.html">Grid view</a></li>
-                            <li><a href="./Partial%202/Practices/navigationbar/LACH_navigationbar.html">Navigation bar</a></li>
-                            <li><a href="./Partial%202/Practices/pagination/LACH_Pagination.html">Pagination</a></li>
-                            <li><a href="./Partial%202/Practices/multicolumn/multicolumn.html">Multicolumn</a></li>
-                            <li><a href="./Partial%202/Practices/multicolumn/LHCA_MULTICOLUMN_PIZZARNIK_CORTAZAR.html">Pizarnik y Cortázar</a></li>
-                        </ul>
+                <section class="index-section" id="parcial-2">
+                    <div class="index-label">
+                        <p class="label">Sala 02</p>
+                        <h3>CSS y JavaScript</h3>
+                        <p>Estilo, layout, efectos y lógica en el cliente.</p>
                     </div>
-
-                    <div class="group">
-                        <h3>Efectos visuales</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%202/Practices/gradients/linearGradient.html">Linear gradient</a></li>
-                            <li><a href="./Partial%202/Practices/gradients/radialGradient.html">Radial gradient</a></li>
-                            <li><a href="./Partial%202/Practices/gradients/conicalGradient.html">Conical gradient</a></li>
-                            <li><a href="./Partial%202/Practices/gradients/gradientText.html">Gradient text</a></li>
-                            <li><a href="./Partial%202/Practices/gradients/LHCA_GRADIENTS_JAKE_GILLINHAAL.html">Gradients Jake Gyllenhaal</a></li>
-                            <li><a href="./Partial%202/Practices/masking/LHCA_masking.html">Masking</a></li>
-                            <li><a href="./Partial%202/Practices/object-fit-position/object_fit_position.html">Object fit position</a></li>
-                            <li><a href="./Partial%202/Practices/object-fit-position/LHCA_OBJECT_FIT_POSITION_AKEBIA.html">Object fit Akebia</a></li>
-                            <li><a href="./Partial%202/Practices/3d/LHCA_3D.html">Transformaciones 3D</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="group">
-                        <h3>Interacción y estilos</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%202/Practices/buttoms/LHCA_buttoms.html">Buttons</a></li>
-                            <li><a href="./Partial%202/Practices/cursors/cursors.html">Cursors</a></li>
-                            <li><a href="./Partial%202/Practices/scrollbars/scrollbars.html">Scrollbars</a></li>
-                            <li><a href="./Partial%202/Practices/scrollbars/LHCA_Cursors_Scroll_REGULAR_SHOW.html">Cursors y scroll regular</a></li>
-                            <li><a href="./Partial%202/Practices/pseudo-elements-class/pseudo-class.html">Pseudo classes</a></li>
-                            <li><a href="./Partial%202/Practices/pseudo-elements-class/pseudo-elements.html">Pseudo elements</a></li>
-                            <li><a href="./Partial%202/Practices/pseudo-elements-class/Orangutan/orangutan.html">Orangutan</a></li>
-                            <li><a href="./Partial%202/Practices/layers/capas.html">Capas</a></li>
-                            <li><a href="./Partial%202/Practices/layers/solecito-capas/capas_salchichita.html">Capas solecito</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="group">
-                        <h3>JavaScript</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%202/Practices/JS/conditional%20statements/if_then_else_js.html">If, then, else</a></li>
-                            <li><a href="./Partial%202/Practices/JS/conditional%20statements/switch_case.html">Switch case</a></li>
-                            <li><a href="./Partial%202/Practices/JS/loop%20statements/for/dayofweek.html">For loop: day of week</a></li>
-                            <li><a href="./Partial%202/Practices/JS/loop%20statements/while_dowhile/LHCA_whiledowhile.html">While y do while</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="group">
-                        <h3>Evaluación</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%202/exam/combustible.html">Examen: combustible</a></li>
-                            <li><a href="./Partial%202/homework/LHCA_Ternary_Events.pdf">Ternary events</a></li>
-                        </ul>
+                    <div class="project-list">
+                        <a class="project-link" href="./Partial%202/Practices/css_externo/CSS_externo.html"><span>CSS</span><strong>CSS externo</strong><small>Separación entre contenido y estilo.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/css_externo/Volleyball.html"><span>CSS</span><strong>Página de volleyball</strong><small>Estilos aplicados a una página temática.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/flexbox/LHCA_FLEXBOX.html"><span>Layout</span><strong>Flexbox</strong><small>Distribución flexible de elementos.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/gridview/LHCA_gridview.html"><span>Layout</span><strong>Grid view</strong><small>Composición bidimensional con CSS Grid.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/navigationbar/LACH_navigationbar.html"><span>Navegación</span><strong>Navigation bar</strong><small>Menús y acceso entre secciones.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/pagination/LACH_Pagination.html"><span>Navegación</span><strong>Pagination</strong><small>Organización de contenido paginado.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/multicolumn/multicolumn.html"><span>Texto</span><strong>Multicolumn</strong><small>Lectura distribuida en columnas.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/multicolumn/LHCA_MULTICOLUMN_PIZZARNIK_CORTAZAR.html"><span>Texto</span><strong>Pizarnik y Cortázar</strong><small>Composición editorial con columnas.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/gradients/linearGradient.html"><span>Color</span><strong>Linear gradient</strong><small>Transiciones lineales de color.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/gradients/radialGradient.html"><span>Color</span><strong>Radial gradient</strong><small>Transiciones circulares de color.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/gradients/conicalGradient.html"><span>Color</span><strong>Conical gradient</strong><small>Gradientes alrededor de un punto.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/gradients/gradientText.html"><span>Tipografía</span><strong>Gradient text</strong><small>Color aplicado a letras.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/gradients/LHCA_GRADIENTS_JAKE_GILLINHAAL.html"><span>Color</span><strong>Gradients Jake Gyllenhaal</strong><small>Práctica visual con gradientes.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/masking/LHCA_masking.html"><span>Imagen</span><strong>Masking</strong><small>Máscaras y recortes visuales.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/object-fit-position/object_fit_position.html"><span>Imagen</span><strong>Object fit position</strong><small>Control del encuadre de imágenes.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/object-fit-position/LHCA_OBJECT_FIT_POSITION_AKEBIA.html"><span>Imagen</span><strong>Object fit Akebia</strong><small>Práctica temática de object-fit.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/3d/LHCA_3D.html"><span>CSS</span><strong>Transformaciones 3D</strong><small>Profundidad y perspectiva en CSS.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/buttoms/LHCA_buttoms.html"><span>UI</span><strong>Buttons</strong><small>Estados visuales de botones.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/cursors/cursors.html"><span>UI</span><strong>Cursors</strong><small>Cursores como señal de interacción.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/scrollbars/scrollbars.html"><span>UI</span><strong>Scrollbars</strong><small>Personalización de desplazamiento.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/scrollbars/LHCA_Cursors_Scroll_REGULAR_SHOW.html"><span>UI</span><strong>Cursors y scroll regular</strong><small>Variaciones de desplazamiento.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/pseudo-elements-class/pseudo-class.html"><span>CSS</span><strong>Pseudo classes</strong><small>Estados y selectores dinámicos.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/pseudo-elements-class/pseudo-elements.html"><span>CSS</span><strong>Pseudo elements</strong><small>Capas generadas desde CSS.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/pseudo-elements-class/Orangutan/orangutan.html"><span>CSS</span><strong>Orangutan</strong><small>Práctica visual con pseudoelementos.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/layers/capas.html"><span>Capas</span><strong>Capas</strong><small>Orden visual y apilamiento.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/layers/solecito-capas/capas_salchichita.html"><span>Capas</span><strong>Capas solecito</strong><small>Composición por profundidad.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/JS/conditional%20statements/if_then_else_js.html"><span>JS</span><strong>If, then, else</strong><small>Decisiones dentro del programa.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/JS/conditional%20statements/switch_case.html"><span>JS</span><strong>Switch case</strong><small>Ramas múltiples de ejecución.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/JS/loop%20statements/for/dayofweek.html"><span>JS</span><strong>For loop: day of week</strong><small>Repetición controlada con ciclos.</small></a>
+                        <a class="project-link" href="./Partial%202/Practices/JS/loop%20statements/while_dowhile/LHCA_whiledowhile.html"><span>JS</span><strong>While y do while</strong><small>Ciclos condicionados.</small></a>
+                        <a class="project-link" href="./Partial%202/exam/combustible.html"><span>Examen</span><strong>Combustible</strong><small>Ejercicio integrador del parcial.</small></a>
+                        <a class="project-link" href="./Partial%202/homework/LHCA_Ternary_Events.pdf"><span>PDF</span><strong>Ternary events</strong><small>Tarea sobre operadores y eventos.</small></a>
                     </div>
                 </section>
 
-                <section class="section" id="parcial-3">
-                    <h2>Parcial 3</h2>
-                    <p>
-                        Bootstrap, DOM, BOM, cookies, formularios y prácticas
-                        integradoras con JavaScript.
-                    </p>
-
-                    <div class="group">
-                        <h3>Bootstrap</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%203/Homework/Bootstrap/index.html">Bootstrap general</a></li>
-                            <li><a href="./Partial%203/Homework/Bootstrap/CDN/index.html">Bootstrap con CDN</a></li>
-                            <li><a href="./Partial%203/Homework/Bootstrap/local/index.html">Bootstrap local</a></li>
-                            <li><a href="./Partial%203/Homework/Bootstrap/without%20bootstrap/index.html">Sin Bootstrap</a></li>
-                        </ul>
+                <section class="index-section" id="parcial-3">
+                    <div class="index-label">
+                        <p class="label">Sala 03</p>
+                        <h3>DOM, Bootstrap y servidor</h3>
+                        <p>Interfaces, navegador, cookies y prácticas con PHP.</p>
                     </div>
-
-                    <div class="group">
-                        <h3>JavaScript en navegador</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%203/Practices/Animation%20DOM/LHCA_DOM_Ball.html">DOM ball animation</a></li>
-                            <li><a href="./Partial%203/Practices/Animation%20DOM/LHCA_DOM_Square.html">DOM square animation</a></li>
-                            <li><a href="./Partial%203/Practices/Animation%20DOM/square.html">Square</a></li>
-                            <li><a href="./Partial%203/Practices/BOM/LHCA_BOM_Cookie.html">BOM cookie</a></li>
-                            <li><a href="./Partial%203/Practices/BOM/LHCA_BOM_Retrieve.html">BOM retrieve</a></li>
-                            <li><a href="./Partial%203/Practices/testPersonalidad/TestPersonalidad.html">Test de personalidad</a></li>
-                        </ul>
+                    <div class="project-list">
+                        <a class="project-link" href="./Partial%203/Homework/Bootstrap/index.html"><span>Bootstrap</span><strong>Bootstrap general</strong><small>Componentes y maquetación rápida.</small></a>
+                        <a class="project-link" href="./Partial%203/Homework/Bootstrap/CDN/index.html"><span>Bootstrap</span><strong>Bootstrap con CDN</strong><small>Uso del framework desde internet.</small></a>
+                        <a class="project-link" href="./Partial%203/Homework/Bootstrap/local/index.html"><span>Bootstrap</span><strong>Bootstrap local</strong><small>Recursos instalados en el proyecto.</small></a>
+                        <a class="project-link" href="./Partial%203/Homework/Bootstrap/without%20bootstrap/index.html"><span>CSS</span><strong>Sin Bootstrap</strong><small>Comparación con estilos propios.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Animation%20DOM/LHCA_DOM_Ball.html"><span>DOM</span><strong>DOM ball animation</strong><small>Movimiento controlado con JavaScript.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Animation%20DOM/LHCA_DOM_Square.html"><span>DOM</span><strong>DOM square animation</strong><small>Animación de elementos en pantalla.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Animation%20DOM/square.html"><span>DOM</span><strong>Square</strong><small>Manipulación visual desde scripts.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/BOM/LHCA_BOM_Cookie.html"><span>BOM</span><strong>BOM cookie</strong><small>Guardar datos en el navegador.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/BOM/LHCA_BOM_Retrieve.html"><span>BOM</span><strong>BOM retrieve</strong><small>Recuperar información guardada.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/testPersonalidad/TestPersonalidad.html"><span>JS</span><strong>Test de personalidad</strong><small>Formulario interactivo con lógica propia.</small></a>
                     </div>
                 </section>
 
-                <section class="section" id="php">
-                    <h2>Prácticas PHP</h2>
-                    <p>
-                        Estos enlaces son parte del repositorio, pero GitHub
-                        Pages no ejecuta PHP. Para probarlos usa un servidor
-                        local como XAMPP, Laragon, MAMP o el servidor integrado
-                        de PHP.
-                    </p>
-
-                    <div class="group">
-                        <h3>Archivos PHP</h3>
-                        <ul class="links">
-                            <li><a href="./Partial%203/Practices/PHP/LHCA_figuras.php">Figuras en PHP <span class="tag">PHP</span></a></li>
-                            <li><a href="./Partial%203/Practices/testPersonalidad/mes.php">Mes en PHP <span class="tag">PHP</span></a></li>
-                            <li><a href="./Partial%203/Practices/Client%20Web%20system/index.php">Client Web system <span class="tag">PHP</span></a></li>
-                            <li><a href="./Partial%203/Practices/Client%20Web%20system/c-crud.php">Create CRUD <span class="tag">PHP</span></a></li>
-                            <li><a href="./Partial%203/Practices/Client%20Web%20system/r-crud-t1.php">Read CRUD <span class="tag">PHP</span></a></li>
-                            <li><a href="./Partial%203/Practices/Client%20Web%20system/u-crud.php">Update CRUD <span class="tag">PHP</span></a></li>
-                            <li><a href="./Partial%203/Practices/Client%20Web%20system/d-crud.php">Delete CRUD <span class="tag">PHP</span></a></li>
-                        </ul>
+                <section class="index-section" id="php">
+                    <div class="index-label">
+                        <p class="label">Anexo servidor</p>
+                        <h3>PHP</h3>
+                        <p>Referencias del repositorio que requieren servidor.</p>
+                    </div>
+                    <div class="project-list">
+                        <a class="project-link" href="./Partial%203/Practices/PHP/LHCA_figuras.php"><span>PHP</span><strong>Figuras en PHP</strong><small>Salida generada desde el servidor.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/testPersonalidad/mes.php"><span>PHP</span><strong>Mes en PHP</strong><small>Lógica de servidor para datos simples.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Client%20Web%20system/index.php"><span>PHP</span><strong>Client Web system</strong><small>Entrada principal del sistema CRUD.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Client%20Web%20system/c-crud.php"><span>CRUD</span><strong>Create CRUD</strong><small>Crear registros.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Client%20Web%20system/r-crud-t1.php"><span>CRUD</span><strong>Read CRUD</strong><small>Leer registros.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Client%20Web%20system/u-crud.php"><span>CRUD</span><strong>Update CRUD</strong><small>Actualizar registros.</small></a>
+                        <a class="project-link" href="./Partial%203/Practices/Client%20Web%20system/d-crud.php"><span>CRUD</span><strong>Delete CRUD</strong><small>Eliminar registros.</small></a>
                     </div>
                 </section>
-
-                <section class="section" id="publicacion">
-                    <h2>Publicación</h2>
-                    <p>
-                        Para montar este repositorio en GitHub Pages, configura
-                        la publicación desde la rama principal y selecciona la
-                        carpeta <strong>/root</strong>. Al estar en la raíz,
-                        GitHub Pages servirá automáticamente este archivo
-                        <strong>index.html</strong> como página inicial.
-                    </p>
-                </section>
-            </div>
+            </section>
         </main>
 
         <footer>
             <div class="wrap">
-                Repositorio académico de Programación Web.
+                Repositorio académico de Programación Web · Kaarlarax
             </div>
         </footer>
     </body>
